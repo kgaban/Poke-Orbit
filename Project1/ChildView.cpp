@@ -6,10 +6,12 @@
 #include "Project1.h"
 #include "ChildView.h"
 
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
+using namespace Gdiplus;
 
 // CChildView
 
@@ -38,7 +40,7 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	cs.dwExStyle |= WS_EX_CLIENTEDGE;
 	cs.style &= ~WS_BORDER;
 	cs.lpszClass = AfxRegisterWndClass(CS_HREDRAW|CS_VREDRAW|CS_DBLCLKS, 
-		::LoadCursor(NULL, IDC_ARROW), reinterpret_cast<HBRUSH>(COLOR_WINDOW+1), NULL);
+		::LoadCursor(NULL, IDC_ARROW), reinterpret_cast<HBRUSH>(COLOR_WINDOW-3), NULL); ///< changed to COLOR_WINDOW-3 for black background
 
 	return TRUE;
 }
@@ -46,7 +48,14 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 void CChildView::OnPaint() 
 {
 	CPaintDC dc(this); // device context for painting
-	
+	Graphics graphics(dc.m_hDC);    // Create GDI+ graphics context
+
+	Pen pen(Color(0, 128, 0), 3); ///< gets a green pen
+	graphics.DrawEllipse(&pen, 160, 10, 650, 650); ///< draws a circle
+
+
+	mPokeOrbitApp.OnDraw(&graphics);
+
 	// TODO: Add your message handler code here
 	
 	// Do not call CWnd::OnPaint() for painting messages
