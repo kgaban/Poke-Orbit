@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "PokeOrbitApp.h"
 
-using namespace Gdiplus;
 
 /// Playing area width in virtual pixels
 const static int Width = 1400;

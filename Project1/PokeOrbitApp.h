@@ -1,5 +1,6 @@
 #pragma once
 
+using namespace Gdiplus;
 
 class CPokeOrbitApp
 {
