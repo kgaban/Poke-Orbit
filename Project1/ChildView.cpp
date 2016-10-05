@@ -58,7 +58,7 @@ void CChildView::OnPaint()
 	graphics.DrawEllipse(&pen, 160, 10, 650, 650); ///< draws a circle
 	*/
 
-	mPokeOrbitApp.OnDraw(&graphics);
+	//mPokeOrbitApp.OnDraw(&graphics);
 
 	// TODO: Add your message handler code here
 	
