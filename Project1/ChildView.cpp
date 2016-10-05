@@ -48,11 +48,15 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 void CChildView::OnPaint() 
 {
 	CPaintDC dc(this); // device context for painting
+
 	Graphics graphics(dc.m_hDC);    // Create GDI+ graphics context
 
+	CRect rect;
+	GetClientRect(&rect);
+	/*
 	Pen pen(Color(0, 128, 0), 3); ///< gets a green pen
 	graphics.DrawEllipse(&pen, 160, 10, 650, 650); ///< draws a circle
-
+	*/
 
 	mPokeOrbitApp.OnDraw(&graphics);
 
