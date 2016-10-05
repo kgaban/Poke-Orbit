@@ -24,5 +24,8 @@ private:
 
 	/// Radius of the playing read in virtual pixels
 	const static int Radius = 500;
+
+	int mAshX;  ///< X coordinate of Ash
+	int mAshY;  ///< Y coordinate of Ash
 };
 

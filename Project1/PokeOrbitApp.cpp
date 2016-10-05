@@ -53,7 +53,11 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	Pen pen(Color::Green);
 	graphics->DrawArc(&pen, -radius, -radius, radius * 2, radius * 2, 0, 360);
 
+	/// Set the coordinate for Ash image
+	mAshX = 0 - (mAsh->GetWidth()) / 2;
+	mAshY = 0 - (mAsh->GetHeight()) / 2;
+
 	/// Sets the location of Ash
-	graphics->DrawImage(mAsh, 0, 0,
+	graphics->DrawImage(mAsh, mAshX, mAshY,
 		mAsh->GetWidth(), mAsh->GetHeight());
 }
