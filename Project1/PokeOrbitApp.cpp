@@ -2,14 +2,7 @@
 #include "PokeOrbitApp.h"
 
 
-/// Playing area width in virtual pixels
-const static int Width = 1400;
 
-/// Playing area height in virtual pixels
-const static int Height = 1100;
-
-/// Radius of the playing read in virtual pixels
-const static int Radius = 500;
 
 CPokeOrbitApp::CPokeOrbitApp()
 {
@@ -25,11 +18,6 @@ CPokeOrbitApp::~CPokeOrbitApp()
 {
 }
 
-float CPokeOrbitApp::Radius(float scaleX, float scaleY)
-{
-	float radius = (float)sqrt(scaleX * scaleX + scaleY * scaleY);
-	return radius;
-}
 
 /**
 * Draw the game area
@@ -49,7 +37,7 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	float scaleX = float(width) / float(Width);
 	float scaleY = float(height) / float(Height);
 	float scale = min(scaleX, scaleY);
-	float radius = CPokeOrbitApp::Radius(scaleX, scaleY);
+	float radius = CPokeOrbitApp::Radius;
 
 	float xOffset = width / 2.0f;
 	float yOffset = height / 2.0f;

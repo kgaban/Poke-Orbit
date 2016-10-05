@@ -10,9 +10,19 @@ public:
 
 	void OnDraw(Gdiplus::Graphics * graphics, int width, int height);
 
-	float Radius(float scaleX, float scaleY); ///< Gets radius of circle
+
+	
 
 private:
-	Gdiplus::Bitmap *mAsh; ///< Background image to use
+	Gdiplus::Bitmap *mAsh; ///< Image of ash
+
+	/// Playing area width in virtual pixels
+	const static int Width = 1400;
+
+	/// Playing area height in virtual pixels
+	const static int Height = 1100;
+
+	/// Radius of the playing read in virtual pixels
+	const static int Radius = 500;
 };
 

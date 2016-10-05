@@ -40,7 +40,7 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	cs.dwExStyle |= WS_EX_CLIENTEDGE;
 	cs.style &= ~WS_BORDER;
 	cs.lpszClass = AfxRegisterWndClass(CS_HREDRAW|CS_VREDRAW|CS_DBLCLKS, 
-		::LoadCursor(NULL, IDC_ARROW), reinterpret_cast<HBRUSH>(COLOR_WINDOW-3), NULL); ///< changed to COLOR_WINDOW-3 for black background
+		::LoadCursor(NULL, IDC_ARROW), reinterpret_cast<HBRUSH>(COLOR_WINDOW+1), NULL); ///< changed to COLOR_WINDOW-3 for black background
 
 	return TRUE;
 }
@@ -58,7 +58,7 @@ void CChildView::OnPaint()
 	graphics.DrawEllipse(&pen, 160, 10, 650, 650); ///< draws a circle
 	*/
 
-	//mPokeOrbitApp.OnDraw(&graphics);
+	mPokeOrbitApp.OnDraw(&graphics, rect.Width(), rect.Height());
 
 	// TODO: Add your message handler code here
 	
