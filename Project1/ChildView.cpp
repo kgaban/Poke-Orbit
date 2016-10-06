@@ -142,7 +142,7 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 
 	auto ball = make_shared<CPokeBall>(&mPokeOrbitApp, xSpeed, ySpeed, filename);
 
-	mPokeOrbitApp.Add(ball);
+	mInventory.ThrowBall(&mPokeOrbitApp, ball);
 
 	Invalidate();
 }

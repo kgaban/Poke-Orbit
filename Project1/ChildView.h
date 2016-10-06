@@ -7,6 +7,8 @@
 
 #pragma once
 #include "PokeOrbitApp.h"
+#include "Inventory.h"
+
 
 // CChildView window
 
@@ -38,6 +40,9 @@ protected:
 private:
 	/// An object that describes our app
 	CPokeOrbitApp  mPokeOrbitApp;
+
+	/// Our inventory
+	CInventory mInventory;
 
 	/// Check if it's the first time drawing
 	bool mFirstDraw = true;
