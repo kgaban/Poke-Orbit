@@ -1,7 +1,14 @@
+/**
+ * \file PokeOrbitApp.h
+ *
+ * \author Kevin Gaban
+ *
+ * Class that creates our background
+ */
+
 #pragma once
 
-using namespace Gdiplus;
-
+/// Class that creates our backgruond
 class CPokeOrbitApp
 {
 public:

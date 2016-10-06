@@ -51,13 +51,11 @@ void CChildView::OnPaint()
 
 	Graphics graphics(dc.m_hDC);    // Create GDI+ graphics context
 
+	/// Creates a rectangle in which our background will be inside of
 	CRect rect;
 	GetClientRect(&rect);
-	/*
-	Pen pen(Color(0, 128, 0), 3); ///< gets a green pen
-	graphics.DrawEllipse(&pen, 160, 10, 650, 650); ///< draws a circle
-	*/
 
+	/// Calls on draw from CPokeOrbitApp
 	mPokeOrbitApp.OnDraw(&graphics, rect.Width(), rect.Height());
 
 	// TODO: Add your message handler code here

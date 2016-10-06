@@ -1,9 +1,19 @@
+/**
+ * \file PokeOrbitApp.cpp
+ *
+ * \author Kevin Gaban
+ */
+
 #include "stdafx.h"
 #include "PokeOrbitApp.h"
 
+using namespace Gdiplus;
 
 
 
+/**
+ * Constructor
+ */
 CPokeOrbitApp::CPokeOrbitApp()
 {
 	mAsh = Bitmap::FromFile(L"images/ash.png");
@@ -14,6 +24,9 @@ CPokeOrbitApp::CPokeOrbitApp()
 }
 
 
+/**
+ * Destructor
+ */
 CPokeOrbitApp::~CPokeOrbitApp()
 {
 }
@@ -27,7 +40,7 @@ CPokeOrbitApp::~CPokeOrbitApp()
 */
 void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 {
-	// Fill the background with black
+	/// Fill the background with black
 	SolidBrush brush(Color::Black);
 	graphics->FillRectangle(&brush, 0, 0, width, height);
 
@@ -45,11 +58,7 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	graphics->TranslateTransform(xOffset, yOffset);
 	graphics->ScaleTransform(scale, scale);
 
-	// From here on you are drawing virtual pixels...
-
-	//
-	// And the circle so you can see how this works...
-	//
+	/// Sets a pen color and draws a circle
 	Pen pen(Color::Green);
 	graphics->DrawArc(&pen, -radius, -radius, radius * 2, radius * 2, 0, 360);
 
