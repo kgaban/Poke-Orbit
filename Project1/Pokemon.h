@@ -21,7 +21,7 @@ public:
 	CPokemon(const CPokemon &) = delete;
 	~CPokemon();
 protected:
-	CPokemon(CPokeOrbitApp* pokeOrbit, std::wstring filename, double min, double max);
+	CPokemon(CPokeOrbitApp* pokeOrbit, std::wstring file, double min, double max);
 private:
 	///minSpeed of pokemon
 	double mMinSpeed;

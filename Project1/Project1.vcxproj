@@ -185,9 +185,12 @@
     <ClInclude Include="Bulbasaur.h" />
     <ClInclude Include="Charmander.h" />
     <ClInclude Include="ChildView.h" />
+    <ClInclude Include="DoubleBufferDC.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Inventory.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Pikachu.h" />
+    <ClInclude Include="PokeBall.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="PokeOrbitApp.h" />
     <ClInclude Include="Project1.h" />
@@ -201,8 +204,10 @@
     <ClCompile Include="Charmander.cpp" />
     <ClCompile Include="ChildView.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Pikachu.cpp" />
+    <ClCompile Include="PokeBall.cpp" />
     <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="PokeOrbitApp.cpp" />
     <ClCompile Include="Project1.cpp" />
@@ -226,4 +231,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="Project1.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

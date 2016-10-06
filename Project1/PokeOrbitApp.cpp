@@ -1,19 +1,22 @@
 /**
- * \file PokeOrbitApp.cpp
- *
- * \author Kevin Gaban
- */
+*
+* \file PokeOrbitApp.cpp
+*
+* Implementation of our poke orbit app
+*/
+
 
 #include "stdafx.h"
 #include "PokeOrbitApp.h"
+#include "PokeBall.h"
+
+#include <memory>
 
 using namespace Gdiplus;
+using namespace std;
 
 
-
-/**
- * Constructor
- */
+/// Constructor
 CPokeOrbitApp::CPokeOrbitApp()
 {
 	mAsh = Bitmap::FromFile(L"images/ash.png");
@@ -23,10 +26,7 @@ CPokeOrbitApp::CPokeOrbitApp()
 	}
 }
 
-
-/**
- * Destructor
- */
+/// Destructor
 CPokeOrbitApp::~CPokeOrbitApp()
 {
 }
@@ -40,7 +40,7 @@ CPokeOrbitApp::~CPokeOrbitApp()
 */
 void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 {
-	/// Fill the background with black
+	// Fill the background with black
 	SolidBrush brush(Color::Black);
 	graphics->FillRectangle(&brush, 0, 0, width, height);
 
@@ -58,7 +58,11 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	graphics->TranslateTransform(xOffset, yOffset);
 	graphics->ScaleTransform(scale, scale);
 
-	/// Sets a pen color and draws a circle
+	// From here on you are drawing virtual pixels...
+
+	//
+	// And the circle so you can see how this works...
+	//
 	Pen pen(Color::Green);
 	graphics->DrawArc(&pen, -radius, -radius, radius * 2, radius * 2, 0, 360);
 
@@ -69,4 +73,32 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	/// Sets the location of Ash
 	graphics->DrawImage(mAsh, mAshX, mAshY,
 		mAsh->GetWidth(), mAsh->GetHeight());
+
+
+	// Draw our game objects
+	for (auto object : mObjects)
+	{
+		object->Draw(graphics);
+	}
+}
+
+
+/**
+* Update Game objects in the app
+*/
+void CPokeOrbitApp::Update(double elapsed)
+{
+	for (auto object : mObjects)
+	{
+		object->Update(elapsed);
+	}
+}
+
+
+/**  Add an object to the app
+* \param object New object to add
+*/
+void CPokeOrbitApp::Add(shared_ptr<CGameObject> object)
+{
+	mObjects.push_back(object);
 }
