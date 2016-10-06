@@ -1,6 +1,8 @@
-
-// ChildView.h : interface of the CChildView class
-//
+/**
+* \file ChildView.h
+*
+* \author Team Transel
+*/
 
 
 #pragma once
@@ -36,5 +38,15 @@ protected:
 private:
 	/// An object that describes our app
 	CPokeOrbitApp  mPokeOrbitApp;
+
+	/// Check if it's the first time drawing
+	bool mFirstDraw = true;
+
+	long long mLastTime;    ///< Last time we read the timer
+	double mTimeFreq;       ///< Rate the timer updates
+public:
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 };
 

@@ -1,9 +1,22 @@
+/**
+*
+* \file PokeOrbitApp.cpp
+*
+* Implementation of our poke orbit app
+*/
+
+
 #include "stdafx.h"
 #include "PokeOrbitApp.h"
+#include "PokeBall.h"
+
+#include <memory>
+
+using namespace Gdiplus;
+using namespace std;
 
 
-
-
+/// Constructor
 CPokeOrbitApp::CPokeOrbitApp()
 {
 	mAsh = Bitmap::FromFile(L"images/ash.png");
@@ -13,7 +26,7 @@ CPokeOrbitApp::CPokeOrbitApp()
 	}
 }
 
-
+/// Destructor
 CPokeOrbitApp::~CPokeOrbitApp()
 {
 }
@@ -60,4 +73,32 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	/// Sets the location of Ash
 	graphics->DrawImage(mAsh, mAshX, mAshY,
 		mAsh->GetWidth(), mAsh->GetHeight());
+
+
+	// Draw our game objects
+	for (auto object : mObjects)
+	{
+		object->Draw(graphics);
+	}
+}
+
+
+/**
+* Update Game objects in the app
+*/
+void CPokeOrbitApp::Update(double elapsed)
+{
+	for (auto object : mObjects)
+	{
+		object->Update(elapsed);
+	}
+}
+
+
+/**  Add an object to the app
+* \param object New object to add
+*/
+void CPokeOrbitApp::Add(shared_ptr<CGameObject> object)
+{
+	mObjects.push_back(object);
 }
