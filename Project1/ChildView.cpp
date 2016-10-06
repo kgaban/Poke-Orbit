@@ -125,24 +125,27 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 	double y = point.y - (rect.Height()/2.0f);
 	double c = sqrt(pow(x,2) + pow(y,2));
 
-	double xSpeed;
-	double ySpeed;
-
-	double theta = atan((y) / (x));
-	if (x < 0)
+	if (c < 500)
 	{
-		xSpeed = cos(theta) * (c / 500) * -maxPokeBallSpeed;
-		ySpeed = sin(theta) * (c / 500) * -maxPokeBallSpeed;
-	}
-	else
-	{
-		xSpeed = cos(theta) * (c / 500) * maxPokeBallSpeed;
-		ySpeed = sin(theta) * (c / 500) * maxPokeBallSpeed;
-	}
+		double xSpeed;
+		double ySpeed;
 
-	auto ball = make_shared<CPokeBall>(&mPokeOrbitApp, xSpeed, ySpeed, filename);
+		double theta = atan((y) / (x));
+		if (x < 0)
+		{
+			xSpeed = cos(theta) * (c / 500) * -maxPokeBallSpeed;
+			ySpeed = sin(theta) * (c / 500) * -maxPokeBallSpeed;
+		}
+		else
+		{
+			xSpeed = cos(theta) * (c / 500) * maxPokeBallSpeed;
+			ySpeed = sin(theta) * (c / 500) * maxPokeBallSpeed;
+		}
 
-	mInventory.ThrowBall(&mPokeOrbitApp, ball);
+		auto ball = make_shared<CPokeBall>(&mPokeOrbitApp, xSpeed, ySpeed, filename);
+
+		mInventory.ThrowBall(&mPokeOrbitApp, ball);
+	}
 
 	Invalidate();
 }
