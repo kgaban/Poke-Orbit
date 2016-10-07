@@ -21,6 +21,10 @@ CGameObject::~CGameObject()
 {
 }
 
+
+/** Draw a given GameObject
+* \param graphics The graphics we are drawing to
+*/
 void CGameObject::Draw(Gdiplus::Graphics * graphics)
 {
 	if (mObjectImage != nullptr)

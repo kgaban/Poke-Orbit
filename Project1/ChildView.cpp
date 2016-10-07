@@ -32,6 +32,15 @@ const wstring filename = L"images/nofilehere.png";
 /// Max pokeball speed
 const double maxPokeBallSpeed = 400;
 
+/// Playing area width in virtual pixels
+const static int Width = 1400;
+
+/// Playing area height in virtual pixels
+const static int Height = 1100;
+
+/// Radius of the playing read in virtual pixels
+const static int Radius = 500;
+
 // CChildView
 
 CChildView::CChildView()
@@ -121,11 +130,17 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 	CRect rect;
 	GetClientRect(&rect);
 
+	float scaleX = float(rect.Width()) / float(Width);
+	float scaleY = float(rect.Height()) / float(Height);
+	float scale = min(scaleX, scaleY);
+
 	double x = point.x - (rect.Width()/2.0f);
 	double y = point.y - (rect.Height()/2.0f);
-	double c = sqrt(pow(x,2) + pow(y,2));
+	double c = (sqrt(pow(x,2) + pow(y,2)));
 
-	if (c < 500)
+	int rad = Radius * scale;
+
+	if (c < rad)
 	{
 		double xSpeed;
 		double ySpeed;
@@ -133,13 +148,13 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 		double theta = atan((y) / (x));
 		if (x < 0)
 		{
-			xSpeed = cos(theta) * (c / 500) * -maxPokeBallSpeed;
-			ySpeed = sin(theta) * (c / 500) * -maxPokeBallSpeed;
+			xSpeed = cos(theta) * ((c + rad) / (2 * rad)) * -maxPokeBallSpeed;
+			ySpeed = sin(theta) * ((c + rad) / (2 * rad)) * -maxPokeBallSpeed;
 		}
 		else
 		{
-			xSpeed = cos(theta) * (c / 500) * maxPokeBallSpeed;
-			ySpeed = sin(theta) * (c / 500) * maxPokeBallSpeed;
+			xSpeed = cos(theta) * ((c + rad) / (2 * rad)) * maxPokeBallSpeed;
+			ySpeed = sin(theta) * ((c + rad) / (2 * rad)) * maxPokeBallSpeed;
 		}
 
 		auto ball = make_shared<CPokeBall>(&mPokeOrbitApp, xSpeed, ySpeed, filename);
