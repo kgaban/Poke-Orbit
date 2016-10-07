@@ -148,13 +148,13 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 		double theta = atan((y) / (x));
 		if (x < 0)
 		{
-			xSpeed = cos(theta) * ((c + rad) / (2 * rad)) * -maxPokeBallSpeed;
-			ySpeed = sin(theta) * ((c + rad) / (2 * rad)) * -maxPokeBallSpeed;
+			xSpeed = cos(theta) * (c / rad) * -maxPokeBallSpeed;
+			ySpeed = sin(theta) * (c / rad) * -maxPokeBallSpeed;
 		}
 		else
 		{
-			xSpeed = cos(theta) * ((c + rad) / (2 * rad)) * maxPokeBallSpeed;
-			ySpeed = sin(theta) * ((c + rad) / (2 * rad)) * maxPokeBallSpeed;
+			xSpeed = cos(theta) * (c / rad) * maxPokeBallSpeed;
+			ySpeed = sin(theta) * (c / rad) * maxPokeBallSpeed;
 		}
 
 		auto ball = make_shared<CPokeBall>(&mPokeOrbitApp, xSpeed, ySpeed, filename);
