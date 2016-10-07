@@ -31,9 +31,9 @@ void CGameObject::Draw(Gdiplus::Graphics * graphics)
 	{
 		double xOffset = (mObjectImage->GetWidth()) / 2;
 		double yOffset = (mObjectImage->GetHeight()) / 2;
-		int xPos = mX - xOffset;
-		int yPos = mY - xOffset;
-		graphics->DrawImage(mObjectImage.get(), xPos, yPos);
+		double xPos = mX - xOffset;
+		double yPos = mY - xOffset;
+		graphics->DrawImage(mObjectImage.get(), (int)xPos, (int)yPos);
 	}
 }
 
