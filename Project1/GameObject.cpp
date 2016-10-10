@@ -9,10 +9,12 @@
 
 
 #include "stdafx.h"
-#include <string>
-#include <memory>
 #include "PokeOrbitApp.h"
 #include "GameObject.h"
+
+#include <string>
+#include <memory>
+#include <cmath>
 
 using namespace std;
 using namespace Gdiplus;
@@ -50,6 +52,16 @@ void CGameObject::SetPosition(int x, int y)
 
 
 
+/** Return the absolute distance from the center of the circle
+* \return c The distance from the center
+*/
+double CGameObject::GetDist()
+{
+	double c = sqrt(pow(mX, 2) + pow(mY, 2) );
+	return c;
+}
+
+
 /** Constructor
 * \param pokeOrbit - the PokeOrbit game this object is a part of
 * \param x either the x position or the x speed of the object
@@ -58,6 +70,7 @@ void CGameObject::SetPosition(int x, int y)
 */
 CGameObject::CGameObject(CPokeOrbitApp * pokeOrbit, int x, int y, wstring filename)
 {
+	mPokeOrbitApp = pokeOrbit;
 	mObjectImage = unique_ptr<Bitmap>(Bitmap::FromFile(filename.c_str()));
 	if (mObjectImage->GetLastStatus() != Ok)
 	{

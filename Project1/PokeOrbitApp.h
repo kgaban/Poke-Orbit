@@ -29,6 +29,8 @@ public:
 
 	void Add(std::shared_ptr<CGameObject> object);
 
+	void RemoveObject(std::shared_ptr<CGameObject> object);
+
 private:
 	Gdiplus::Bitmap *mAsh; ///< Image of ash
 

@@ -11,6 +11,7 @@
 #include "PokeBall.h"
 
 #include <memory>
+#include <vector>
 
 using namespace Gdiplus;
 using namespace std;
@@ -75,6 +76,21 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 		mAsh->GetWidth(), mAsh->GetHeight());
 
 
+	vector < shared_ptr<CGameObject> > markedForDeath;
+	// Remove game objects that have left the circle
+	for (auto i = mObjects.rbegin(); i != mObjects.rend(); i++)
+	{
+		if ((*i)->GetDist() > radius)
+		{
+			markedForDeath.push_back(*i);
+		}
+	}
+	for (auto i : markedForDeath)
+	{
+		RemoveObject(i);
+	}
+
+
 	// Draw our game objects
 	for (auto object : mObjects)
 	{
@@ -101,4 +117,16 @@ void CPokeOrbitApp::Update(double elapsed)
 void CPokeOrbitApp::Add(shared_ptr<CGameObject> object)
 {
 	mObjects.push_back(object);
+}
+
+/** Remove an object from the app
+* \param object Object to be removed
+*/
+void CPokeOrbitApp::RemoveObject(shared_ptr<CGameObject> object)
+{
+	auto loc = find(begin(mObjects), end(mObjects), object);
+	if (loc != end(mObjects))
+	{
+		mObjects.erase(loc);
+	}
 }

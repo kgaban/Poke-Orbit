@@ -29,18 +29,28 @@ public:
 
 	void SetPosition(int x, int y);
 
+	/// Return the object's x position
+	double GetX() { return mX; }
+	/// Return the object's y position
+	double GetY() { return mY; }
+
+	double GetDist();
+
 protected:
 	CGameObject(CPokeOrbitApp *pokeOrbit, int x, int y, std::wstring filename);
 
 private:
+	/// The PokeOrbitApp containing the GameObject
+	CPokeOrbitApp *mPokeOrbitApp;
+
 	/// The image of the object
 	std::unique_ptr<Gdiplus::Bitmap> mObjectImage;
 
 	/// X position
-	int mX = 0;
+	double mX = 0;
 
 	/// Y position
-	int mY = 0;
+	double mY = 0;
 
 };
 

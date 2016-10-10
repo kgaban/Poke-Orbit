@@ -145,7 +145,7 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 	double y = point.y - (rect.Height()/2.0f);
 	double c = (sqrt(pow(x,2) + pow(y,2)));
 
-	int rad = Radius * scale;
+	double rad = Radius * scale;
 
 	if (c < rad)
 	{
