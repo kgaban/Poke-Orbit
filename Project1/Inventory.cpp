@@ -35,3 +35,5 @@ void CInventory::ThrowBall(CPokeOrbitApp * pokeOrbit, std::shared_ptr<CPokeBall>
 		mPokeBalls--;
 	}
 }
+
+

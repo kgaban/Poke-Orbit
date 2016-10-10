@@ -15,6 +15,7 @@
 
 #include "GameObject.h"
 #include "PokeBall.h"
+#include "Inventory.h"
 
 /// PokeOrbit app implementation
 class CPokeOrbitApp
@@ -33,6 +34,12 @@ public:
 
 private:
 	Gdiplus::Bitmap *mAsh; ///< Image of ash
+	int mAshX;  ///< X coordinate of Ash
+	int mAshY;  ///< Y coordinate of Ash
+
+	Gdiplus::Bitmap *mPokeBall; ///< Image of a pokeball
+	int mPokeBallX;  ///< X coordinate of pokeball
+	int mPokeBallY;  ///< Y coordinate of pokeball
 
 	/// Playing area width in virtual pixels
 	const static int Width = 1400;
@@ -43,10 +50,12 @@ private:
 	/// Radius of the playing read in virtual pixels
 	const static int Radius = 500;
 
-	int mAshX;  ///< X coordinate of Ash
-	int mAshY;  ///< Y coordinate of Ash
+	
 
 	/// All of our active game objects
 	std::vector<std::shared_ptr<CGameObject> > mObjects;
+
+	/// Our inventory
+	CInventory mInventory;
 };
 

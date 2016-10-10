@@ -29,6 +29,9 @@ public:
 
 	void ThrowBall(CPokeOrbitApp *pokeOrbit, std::shared_ptr<CPokeBall> object);
 
+	/// Returns the count of pokeballs
+	int PokeBallCount() { return mPokeBalls; }
+
 private:
 	/// Pikachu count
 	int mPikachus = 0;

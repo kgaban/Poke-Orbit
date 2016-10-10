@@ -90,10 +90,6 @@ void CChildView::OnPaint()
 
 	CRect rect;
 	GetClientRect(&rect);
-	/*
-	Pen pen(Color(0, 128, 0), 3); ///< gets a green pen
-	graphics.DrawEllipse(&pen, 160, 10, 650, 650); ///< draws a circle
-	*/
 
 	if (mFirstDraw)
 	{
