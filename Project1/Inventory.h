@@ -15,6 +15,7 @@
 
 class CPokeOrbitApp;
 class CGameObject;
+class CPokeBall;
 
 /**
 * Inventory class to manage tallies of pokemon and pokeballs
@@ -26,7 +27,7 @@ public:
 	CInventory();
 	virtual ~CInventory();
 
-	void ThrowBall(CPokeOrbitApp *pokeOrbit, std::shared_ptr<CGameObject> object);
+	void ThrowBall(CPokeOrbitApp *pokeOrbit, std::shared_ptr<CPokeBall> object);
 
 private:
 	/// Pikachu count

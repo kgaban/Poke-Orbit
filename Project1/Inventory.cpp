@@ -10,17 +10,24 @@
 #include "stdafx.h"
 #include "Inventory.h"
 #include "PokeOrbitApp.h"
+#include "PokeBall.h"
 
+/// Constructor
 CInventory::CInventory()
 {
 }
 
-
+/// Destructor
 CInventory::~CInventory()
 {
 }
 
-void CInventory::ThrowBall(CPokeOrbitApp * pokeOrbit, std::shared_ptr<CGameObject> object)
+/**
+* Throws a pokeball
+* \param pokeOrbit The pokeorbit app we're throwing in
+* \param object The game pokeball we're throwing
+*/
+void CInventory::ThrowBall(CPokeOrbitApp * pokeOrbit, std::shared_ptr<CPokeBall> object)
 {	
 	if (mPokeBalls > 0)
 	{

@@ -43,10 +43,12 @@ const static int Radius = 500;
 
 // CChildView
 
+/// Constructor
 CChildView::CChildView()
 {
 }
 
+/// Destructor
 CChildView::~CChildView()
 {
 }
@@ -63,6 +65,8 @@ END_MESSAGE_MAP()
 
 // CChildView message handlers
 
+
+/// Precreates the window for the display to create a buffer
 BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs) 
 {
 	if (!CWnd::PreCreateWindow(cs))
@@ -76,6 +80,7 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	return TRUE;
 }
 
+/// Procedure to follow when painting to the application
 void CChildView::OnPaint() 
 {
 	CPaintDC paintDC(this);     // device context for painting
@@ -124,7 +129,9 @@ void CChildView::OnPaint()
 	// Do not call CWnd::OnPaint() for painting messages
 }
 
-
+/**
+* Procedure on follow on releasing the left mouse button
+*/
 void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	CRect rect;
