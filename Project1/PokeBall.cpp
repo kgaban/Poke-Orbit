@@ -12,9 +12,9 @@
 #include "stdafx.h"
 #include "PokeBall.h"
 
-
 #include <string>
 
+using namespace Gdiplus;
 using namespace std;
 
 /// Set the image for the pokeball
@@ -31,6 +31,7 @@ CPokeBall::CPokeBall(CPokeOrbitApp *pokeOrbit, double x, double y, wstring file)
 {
 	mSpeedX = x;
 	mSpeedY = y;
+
 }
 
 /// Destructor
@@ -60,3 +61,5 @@ void CPokeBall::Update(double elapsed)
 
 	SetPosition(mX, mY);
 }
+
+

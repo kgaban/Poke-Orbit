@@ -27,10 +27,11 @@ CPokeOrbitApp::CPokeOrbitApp()
 	}
 
 	mPokeBall = Bitmap::FromFile(L"images/pokeball.png");
-	if (mAsh->GetLastStatus() != Ok)
+	if (mPokeBall->GetLastStatus() != Ok)
 	{
-		AfxMessageBox(L"Failed to open images/pokeball.png");
+		AfxMessageBox(L"Failed to open images/ash.png");
 	}
+
 }
 
 /// Destructor
@@ -82,20 +83,6 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	graphics->DrawImage(mAsh, mAshX, mAshY,
 		mAsh->GetWidth(), mAsh->GetHeight());
 
-	/// Set the coordinates for the first PokeBall
-	mPokeBallX = -CPokeOrbitApp::Width / 2;
-	mPokeBallY = -CPokeOrbitApp::Height / 2 + 20;
-
-	/// Draws pokeballs 
-	for (int j = 0; j < mInventory.PokeBallCount(); j++)
-	{
-		graphics->DrawImage(mPokeBall, mPokeBallX, mPokeBallY,
-			mPokeBall->GetWidth(), mPokeBall->GetHeight());
-
-		/// increment for every new PokeBall
-		mPokeBallY += mPokeBall->GetWidth() + 20;
-	}
-
 	vector < shared_ptr<CGameObject> > markedForDeath;
 	// Remove game objects that have left the circle
 	for (auto i = mObjects.rbegin(); i != mObjects.rend(); i++)
@@ -127,7 +114,6 @@ void CPokeOrbitApp::Update(double elapsed)
 	for (auto object : mObjects)
 	{
 		object->Update(elapsed);
-
 	}
 }
 
@@ -149,5 +135,22 @@ void CPokeOrbitApp::RemoveObject(shared_ptr<CGameObject> object)
 	if (loc != end(mObjects))
 	{
 		mObjects.erase(loc);
+	}
+}
+
+void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics, int width, int height, int numPokeBalls)
+{
+	/// Set the coordinates for the first PokeBall
+	mPokeBallX = -CPokeOrbitApp::Width / 2;
+	mPokeBallY = -CPokeOrbitApp::Height / 2 + 20;
+
+	/// Draws pokeballs ** FIGURE OUT HOW TO PASS NUM OF POKEBALLS HERE**
+	for (int j = 0; j < numPokeBalls; j++)
+	{
+		graphics->DrawImage(mPokeBall, mPokeBallX, mPokeBallY,
+			mPokeBall->GetWidth(), mPokeBall->GetHeight());
+
+		/// increment for every new PokeBall
+		mPokeBallY += mPokeBall->GetWidth() + 20;
 	}
 }

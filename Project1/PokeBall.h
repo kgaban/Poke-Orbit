@@ -14,6 +14,7 @@
 
 #include "PokeOrbitApp.h"
 #include "GameObject.h"
+#include "Inventory.h"
 
 
 /// Class to manage behavior of thrown pokeballs

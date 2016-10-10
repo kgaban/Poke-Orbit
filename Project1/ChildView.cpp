@@ -120,6 +120,8 @@ void CChildView::OnPaint()
 
 	mPokeOrbitApp.OnDraw(&graphics, rect.Width(), rect.Height());
 
+	mPokeOrbitApp.DrawInventory(&graphics, rect.Width(), rect.Height(), mInventory.PokeBallCount()); ///< draws the inventory of pokeballs
+
 	// TODO: Add your message handler code here
 	
 	// Do not call CWnd::OnPaint() for painting messages
