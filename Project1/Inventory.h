@@ -43,6 +43,6 @@ private:
 	int mCharmander = 0;
 
 	/// Pokeball count
-	int mPokeBalls = 3;
+	int mPokeBalls = 13;
 };
 

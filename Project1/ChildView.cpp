@@ -24,13 +24,13 @@ using namespace Gdiplus;
 using namespace std;
 
 /// Frame duration in milliseconds
-const int FrameDuration = 20;
+const int FrameDuration = 7;
 
 /// An empty file name to use for instantiation
 const wstring filename = L"images/nofilehere.png";
 
 /// Max pokeball speed
-const double maxPokeBallSpeed = 400;
+const double maxPokeBallSpeed = 600;
 
 /// Playing area width in virtual pixels
 const static int Width = 1400;
