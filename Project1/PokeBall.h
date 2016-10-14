@@ -28,7 +28,7 @@ public:
 	/// Copy constructor, disabled
 	//CPokeBall(const CPokeBall&) = delete;
 
-	CPokeBall(CPokeOrbitApp *pokeOrbit, double x, double y, std::wstring file);
+	CPokeBall(CPokeOrbitApp *pokeOrbit, double x, double y);
 
 	virtual ~CPokeBall();
 

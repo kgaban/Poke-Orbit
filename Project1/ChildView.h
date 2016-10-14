@@ -47,6 +47,9 @@ private:
 	/// Check if it's the first time drawing
 	bool mFirstDraw = true;
 
+	/// Check if the player clicked on an available pokestop
+	bool mPokeStopClick = false;
+
 	long long mLastTime;    ///< Last time we read the timer
 	double mTimeFreq;       ///< Rate the timer updates
 public:

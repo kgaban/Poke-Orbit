@@ -36,4 +36,13 @@ void CInventory::ThrowBall(CPokeOrbitApp * pokeOrbit, std::shared_ptr<CPokeBall>
 	}
 }
 
+void CInventory::AddPokeBalls(int numPokeBalls)
+{
+	mPokeBalls += numPokeBalls;
+	if (mPokeBalls > 13)
+	{
+		mPokeBalls = 13;
+	}
+}
+
 

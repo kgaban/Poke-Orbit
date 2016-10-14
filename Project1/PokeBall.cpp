@@ -27,7 +27,7 @@ const wstring filename = L"images/pokeball.png";
 * \param y The speed in the y direction of the pokeball
 * \param filename The name of the file
 */
-CPokeBall::CPokeBall(CPokeOrbitApp *pokeOrbit, double x, double y, wstring file) : CGameObject(pokeOrbit, x, y, filename)
+CPokeBall::CPokeBall(CPokeOrbitApp *pokeOrbit, double x, double y) : CGameObject(pokeOrbit, x, y, filename)
 {
 	mSpeedX = x;
 	mSpeedY = y;

@@ -27,7 +27,9 @@ public:
 
 	virtual void Draw(Gdiplus::Graphics *graphics);
 
-	void SetPosition(int x, int y);
+	void SetPosition(double x, double y);
+
+	void SetImage(const std::wstring filename);
 
 	/// Return the object's x position
 	double GetX() { return mX; }
@@ -36,8 +38,10 @@ public:
 
 	double GetDist();
 
+	virtual bool HitTest(double x, double y);
+
 protected:
-	CGameObject(CPokeOrbitApp *pokeOrbit, int x, int y, std::wstring filename);
+	CGameObject(CPokeOrbitApp *pokeOrbit, double x, double y, std::wstring filename);
 
 private:
 	/// The PokeOrbitApp containing the GameObject

@@ -32,6 +32,8 @@ public:
 	/// Returns the count of pokeballs
 	int PokeBallCount() { return mPokeBalls; }
 
+	void AddPokeBalls(int numPokeBalls);
+
 private:
 	/// Pikachu count
 	int mPikachus = 0;

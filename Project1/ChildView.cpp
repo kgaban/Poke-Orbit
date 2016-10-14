@@ -26,20 +26,17 @@ using namespace std;
 /// Frame duration in milliseconds
 const int FrameDuration = 7;
 
-/// An empty file name to use for instantiation
-const wstring filename = L"images/nofilehere.png";
-
 /// Max pokeball speed
-const double maxPokeBallSpeed = 600;
+const double maxPokeBallSpeed = 530;
 
 /// Playing area width in virtual pixels
-const static int Width = 1400;
+const static double Width = 1400;
 
 /// Playing area height in virtual pixels
-const static int Height = 1100;
+const static double Height = 1100;
 
 /// Radius of the playing read in virtual pixels
-const static int Radius = 500;
+const static double Radius = 500;
 
 // CChildView
 
@@ -132,39 +129,51 @@ void CChildView::OnPaint()
 */
 void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	CRect rect;
-	GetClientRect(&rect);
-
-	float scaleX = float(rect.Width()) / float(Width);
-	float scaleY = float(rect.Height()) / float(Height);
-	float scale = min(scaleX, scaleY);
-
-	double x = point.x - (rect.Width()/2.0f);
-	double y = point.y - (rect.Height()/2.0f);
-	double c = (sqrt(pow(x,2) + pow(y,2)));
-
-	double rad = Radius * scale;
-
-	if (c < rad)
+	// Don't throw a pokeball if they just clicked on an available pokestop
+	if (mPokeStopClick)
 	{
-		double xSpeed;
-		double ySpeed;
+		CRect rect;
+		GetClientRect(&rect);
 
-		double theta = atan((y) / (x));
-		if (x < 0)
+		// Determine scaling for speed
+		float scaleX = float(rect.Width()) / float(Width);
+		float scaleY = float(rect.Height()) / float(Height);
+		float scale = min(scaleX, scaleY);
+
+		// Calculate the distance of the click from the center of the circle
+		double x = point.x - (rect.Width() / 2.0f);
+		double y = point.y - (rect.Height() / 2.0f);
+		double c = (sqrt(pow(x, 2) + pow(y, 2)));
+
+		// Scale the radius
+		double rad = Radius * scale;
+
+		// If the click was within the scaled radius, calculate speed for the ball and throw it-
+		if (c < rad)
 		{
-			xSpeed = cos(theta) * (c / rad) * -maxPokeBallSpeed;
-			ySpeed = sin(theta) * (c / rad) * -maxPokeBallSpeed;
-		}
-		else
-		{
-			xSpeed = cos(theta) * (c / rad) * maxPokeBallSpeed;
-			ySpeed = sin(theta) * (c / rad) * maxPokeBallSpeed;
-		}
+			double xSpeed;
+			double ySpeed;
 
-		auto ball = make_shared<CPokeBall>(&mPokeOrbitApp, xSpeed, ySpeed, filename);
+			double theta = atan((y) / (x));
+			if (x < 0)
+			{
+				xSpeed = cos(theta) * (c / rad) * -maxPokeBallSpeed;
+				ySpeed = sin(theta) * (c / rad) * -maxPokeBallSpeed;
+			}
+			else
+			{
+				xSpeed = cos(theta) * (c / rad) * maxPokeBallSpeed;
+				ySpeed = sin(theta) * (c / rad) * maxPokeBallSpeed;
+			}
 
-		mInventory.ThrowBall(&mPokeOrbitApp, ball);
+			auto ball = make_shared<CPokeBall>(&mPokeOrbitApp, xSpeed, ySpeed);
+
+			mInventory.ThrowBall(&mPokeOrbitApp, ball);
+		}
+	}
+	else
+	{
+		mPokeStopClick = false;
 	}
 
 	Invalidate();
