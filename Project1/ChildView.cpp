@@ -239,5 +239,6 @@ void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 	if (visitor.mPokeStop)
 	{
 		mInventory.AddPokeBalls(3);
+		mPokeStopClick = true;
 	}
 }
