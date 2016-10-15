@@ -16,6 +16,7 @@
 #include "GameObject.h"
 #include "PokeBall.h"
 #include "Inventory.h"
+#include "PokeOrbitVisitor.h"
 
 /// PokeOrbit app implementation
 class CPokeOrbitApp
@@ -33,6 +34,20 @@ public:
 	void RemoveObject(std::shared_ptr<CGameObject> object);
 
 	void DrawInventory(Gdiplus::Graphics * graphics, int width, int height, int mNumPokeballs);
+
+
+	/** Accept visitor
+	* \param visitor The visitor being accepted
+	* \param x The x position
+	* \param y The y position
+	*/
+	void Accept(CPokeOrbitVisitor *visitor, double x, double y)
+	{
+		for (auto object : mObjects)
+		{
+			object->Accept(visitor, this, x, y);
+		}
+	}
 
 private:
 	Gdiplus::Bitmap *mAsh; ///< Image of ash

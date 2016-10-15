@@ -33,6 +33,7 @@ const wstring UsedPokestopImageName(L"images/pokestop-used.png");
 CPokeStop::CPokeStop(CPokeOrbitApp * pokeOrbit, int x, int y)
 	: CGameObject(pokeOrbit, x, y, PokestopImageName)
 {
+	SetPosition(x, y);
 }
 
 /// Destructor
@@ -40,8 +41,79 @@ CPokeStop::~CPokeStop()
 {
 }
 
+
+/** Update the pokestop
+* \param elapsed The time since the last update
+*/
 void CPokeStop::Update(double elapsed)
 {
 	mClickTime += elapsed;
 	mLifespan += elapsed;
+
+	double x = GetX();
+	double y = GetY();
+
+	double theta = atan(y / x);
+	double c = (sqrt(pow(x, 2) + pow(y, 2)));
+	theta -= mSpeed*elapsed;
+
+	if (x < 0)
+	{
+		x = cos(theta) * -c;
+		y = sin(theta) * -c;
+	}
+	else
+	{
+		x = cos(theta) * c;
+		y = sin(theta) * c;
+	}
+
+	SetPosition(x, y);
 }
+
+
+
+/**
+* Method to draw the pokeball on the game board
+* \param graphics The drawing board
+*/
+void CPokeStop::Draw(Gdiplus::Graphics * graphics)
+{
+	CGameObject::Draw(graphics);
+}
+
+
+/// Update the clickable status of the pokestop
+void CPokeStop::MakeClickable()
+{
+	if (!mAvailable && (mClickTime >= 15))
+	{
+		SetImage(PokestopImageName);
+		mAvailable = true;
+		mClickTime = 0;
+	}
+}
+
+/** Return a value to either get the pokestop destroyed
+* or keep it alive depending on its timer
+* \return double The result to determine destruction
+*/
+double CPokeStop::GetDist()
+{
+	if (mLifespan > 60)
+	{
+		return 1000;
+	}
+	return 1;
+}
+
+
+/** Makes it so the pokestop has been used
+*/
+void CPokeStop::MakeNotClick()
+{
+	mAvailable = false;
+	mClickTime = 0;
+	SetImage(PokestopImageName);
+}
+

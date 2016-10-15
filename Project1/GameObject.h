@@ -12,6 +12,7 @@
 #include <memory>
 
 class CPokeOrbitApp;
+class CPokeOrbitVisitor;
 
 class CGameObject
 {
@@ -36,9 +37,17 @@ public:
 	/// Return the object's y position
 	double GetY() { return mY; }
 
-	double GetDist();
+	virtual double GetDist();
 
 	virtual bool HitTest(double x, double y);
+
+	/** Accept visitor
+	* \param visitor The visitor being accepted
+	* \param pokeOrbit The App containing everything
+	* \param x The x position
+	* \param y The y position
+	*/
+	virtual void Accept(CPokeOrbitVisitor *visitor, CPokeOrbitApp *pokeOrbit, double x, double y) {}
 
 protected:
 	CGameObject(CPokeOrbitApp *pokeOrbit, double x, double y, std::wstring filename);

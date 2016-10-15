@@ -94,6 +94,9 @@ double CGameObject::GetDist()
 
 
 /** Test whether or not the object has been clicked
+* \param x The x position
+* \param y The y position
+* \return bool The true or false result of the hit test
 */
 bool CGameObject::HitTest(double x, double y)
 {

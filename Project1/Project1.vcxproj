@@ -193,7 +193,10 @@
     <ClInclude Include="PokeBall.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="PokeOrbitApp.h" />
+    <ClInclude Include="PokeOrbitVisitor.h" />
     <ClInclude Include="PokeStop.h" />
+    <ClInclude Include="PokeStopClickVisitor.h" />
+    <ClInclude Include="PokeStopVisitor.h" />
     <ClInclude Include="Project1.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -211,7 +214,10 @@
     <ClCompile Include="PokeBall.cpp" />
     <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="PokeOrbitApp.cpp" />
+    <ClCompile Include="PokeOrbitVisitor.cpp" />
     <ClCompile Include="PokeStop.cpp" />
+    <ClCompile Include="PokeStopClickVisitor.cpp" />
+    <ClCompile Include="PokeStopVisitor.cpp" />
     <ClCompile Include="Project1.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

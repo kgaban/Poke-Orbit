@@ -12,6 +12,9 @@
 #include "GameObject.h"
 #include "PokeBall.h"
 #include "DoubleBufferDC.h"
+#include "PokeStop.h"
+#include "PokeStopVisitor.h"
+#include "PokeStopClickVisitor.h"
 
 #include <cmath>
 #include <memory>
@@ -56,6 +59,8 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_LBUTTONUP()
 	ON_WM_TIMER()
 	ON_WM_ERASEBKGND()
+//	ON_WM_LBUTTONDOWN()
+ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 
@@ -119,6 +124,11 @@ void CChildView::OnPaint()
 
 	mPokeOrbitApp.DrawInventory(&graphics, rect.Width(), rect.Height(), mInventory.PokeBallCount()); ///< draws the inventory of pokeballs
 
+	// Check for pokestops that need to be made clickable
+	CPokeStopVisitor pokeStopVisitor;
+	mPokeOrbitApp.Accept(&pokeStopVisitor, 0, 0);
+
+
 	// TODO: Add your message handler code here
 	
 	// Do not call CWnd::OnPaint() for painting messages
@@ -129,8 +139,12 @@ void CChildView::OnPaint()
 */
 void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 {
+	auto pokestop = make_shared<CPokeStop>(&mPokeOrbitApp, point.x, point.y);
+
+	mPokeOrbitApp.Add(pokestop);
+
 	// Don't throw a pokeball if they just clicked on an available pokestop
-	if (mPokeStopClick)
+	if (!mPokeStopClick)
 	{
 		CRect rect;
 		GetClientRect(&rect);
@@ -201,4 +215,16 @@ void CChildView::OnTimer(UINT_PTR nIDEvent)
 BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 {
 	return FALSE;
+}
+
+//void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
+//{
+//	
+//}
+
+
+void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	CPokeStopClickVisitor visitor;
+	mPokeOrbitApp.Accept(&visitor, point.x, point.y);
 }

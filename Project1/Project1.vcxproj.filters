@@ -69,6 +69,15 @@
     <ClInclude Include="PokeStop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PokeOrbitVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PokeStopVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PokeStopClickVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project1.cpp">
@@ -111,6 +120,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PokeStop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PokeOrbitVisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PokeStopVisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PokeStopClickVisitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
