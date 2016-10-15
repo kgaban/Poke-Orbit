@@ -36,9 +36,9 @@ CPokeStopClickVisitor::~CPokeStopClickVisitor()
 void CPokeStopClickVisitor::VisitPokeStop(CPokeStop * pokeStop, CPokeOrbitApp * pokeOrbit, double x, double y)
 {
 	bool check = pokeStop->HitTest(x, y);
-	if (check)
+	if (check && !mPokeStop)
 	{
-		mPokeStops++;
+		mPokeStop = true;
 		pokeStop->MakeNotClick();
 	}
 }

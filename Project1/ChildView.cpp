@@ -139,9 +139,6 @@ void CChildView::OnPaint()
 */
 void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	auto pokestop = make_shared<CPokeStop>(&mPokeOrbitApp, point.x, point.y);
-
-	mPokeOrbitApp.Add(pokestop);
 
 	// Don't throw a pokeball if they just clicked on an available pokestop
 	if (!mPokeStopClick)
@@ -225,6 +222,22 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 
 void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 {
+	CRect rect;
+	GetClientRect(&rect);
+
+	// Determine scaling for speed
+	float scaleX = float(rect.Width()) / float(Width);
+	float scaleY = float(rect.Height()) / float(Height);
+	float scale = min(scaleX, scaleY);
+
+	double x = point.x - (rect.Width() / 2.0f);
+	double y = point.y - (rect.Height() / 2.0f);
+
 	CPokeStopClickVisitor visitor;
-	mPokeOrbitApp.Accept(&visitor, point.x, point.y);
+	mPokeOrbitApp.Accept(&visitor, x/scale, y/scale);
+
+	if (visitor.mPokeStop)
+	{
+		mInventory.AddPokeBalls(3);
+	}
 }

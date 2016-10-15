@@ -16,9 +16,9 @@
 using namespace std;
 
 /// Minimum speed of a pokestop
-const double PokestopMinSpeed = 200;
+const double PokestopMinSpeed = 0.3;
 /// Maximum speed of a pokestop
-const double PokestopMaxSpeed = 300;
+const double PokestopMaxSpeed = 0.7;
 /// Pokestop filename
 const wstring PokestopImageName(L"images/pokestop.png");
 /// Used pokestop filename
@@ -34,6 +34,8 @@ CPokeStop::CPokeStop(CPokeOrbitApp * pokeOrbit, int x, int y)
 	: CGameObject(pokeOrbit, x, y, PokestopImageName)
 {
 	SetPosition(x, y);
+	double factor = (double)rand() / RAND_MAX;
+	mSpeed = PokestopMinSpeed + factor*(PokestopMaxSpeed - PokestopMinSpeed);
 }
 
 /// Destructor
@@ -114,6 +116,6 @@ void CPokeStop::MakeNotClick()
 {
 	mAvailable = false;
 	mClickTime = 0;
-	SetImage(PokestopImageName);
+	SetImage(UsedPokestopImageName);
 }
 

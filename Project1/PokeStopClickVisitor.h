@@ -23,7 +23,7 @@ public:
 
 	void VisitPokeStop(CPokeStop *pokeStop, CPokeOrbitApp *pokeOrbit, double x, double y) override;
 
-	/// Pokestops clicked on
-	int	mPokeStops = 0;
+	/// Pokestop clicked on
+	bool mPokeStop = false;
 };
 
