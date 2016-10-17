@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Emitter.h"
 #include "GameObject.h"
-#include "PokeStop.h"
 #include "Charmander.h"
 #include "Blastoise.h"
 #include "Bulbasaur.h"

@@ -12,7 +12,6 @@
 #include "GameObject.h"
 #include "PokeBall.h"
 #include "DoubleBufferDC.h"
-#include "Emitter.h"
 
 #include <cmath>
 #include <memory>
@@ -109,8 +108,6 @@ void CChildView::OnPaint()
 
 		mLastTime = time.QuadPart;
 		mTimeFreq = double(freq.QuadPart);
-		CEmitter emitter(&mPokeOrbitApp);
-		emitter.Emit();
 	}
 
 	/*
