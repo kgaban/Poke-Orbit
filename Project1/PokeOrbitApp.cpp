@@ -29,9 +29,32 @@ CPokeOrbitApp::CPokeOrbitApp()
 	mPokeBall = Bitmap::FromFile(L"images/pokeball.png");
 	if (mPokeBall->GetLastStatus() != Ok)
 	{
-		AfxMessageBox(L"Failed to open images/ash.png");
+		AfxMessageBox(L"Failed to open images/pokeball.png");
+	}
+	
+	mPikachu = Bitmap::FromFile(L"images/pikachu.png");
+	if (mPikachu->GetLastStatus() != Ok)
+	{
+		AfxMessageBox(L"Failed to open images/pikachu.png");
 	}
 
+	mBlastoise = Bitmap::FromFile(L"images/blastoise.png");
+	if (mBlastoise->GetLastStatus() != Ok)
+	{
+		AfxMessageBox(L"Failed to open images/blastoise.png");
+	}
+
+	mBulbasaur = Bitmap::FromFile(L"images/bulbasaur.png");
+	if (mBulbasaur->GetLastStatus() != Ok)
+	{
+		AfxMessageBox(L"Failed to open images/bulbasaur.png");
+	}
+
+	mCharmander = Bitmap::FromFile(L"images/charmander.png");
+	if (mCharmander->GetLastStatus() != Ok)
+	{
+		AfxMessageBox(L"Failed to open images/charmander.png");
+	}
 }
 
 /// Destructor
@@ -138,13 +161,14 @@ void CPokeOrbitApp::RemoveObject(shared_ptr<CGameObject> object)
 	}
 }
 
-void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics, int width, int height, int numPokeBalls)
+void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics, int width, int height, int numPokeBalls, 
+	int mPikachus, int mBlastoise, int mBulbasaurs, int mCharmander)
 {
 	/// Set the coordinates for the first PokeBall
 	mPokeBallX = -CPokeOrbitApp::Width / 2;
 	mPokeBallY = -CPokeOrbitApp::Height / 2 + 20;
 
-	/// Draws pokeballs ** FIGURE OUT HOW TO PASS NUM OF POKEBALLS HERE**
+	/// Draws pokeballs
 	for (int j = 0; j < numPokeBalls; j++)
 	{
 		graphics->DrawImage(mPokeBall, mPokeBallX, mPokeBallY,
@@ -153,4 +177,15 @@ void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics, int width, int h
 		/// increment for every new PokeBall
 		mPokeBallY += mPokeBall->GetWidth() + 20;
 	}
+
+	mPokemonOffset = 0; ///< default offset ** gets incremented when implemented below**
+
+	/** PSEUDOCODE
+	 * if first pokemon caught, display it and increment offset by image height
+	 * if second pokemon caught, display it and increment offset
+	 * etc..
+	 * NOTE: display count along with image so may need a horizontal offset to make space for that.
+	 */
+
+
 }

@@ -33,7 +33,8 @@ public:
 
 	void RemoveObject(std::shared_ptr<CGameObject> object);
 
-	void DrawInventory(Gdiplus::Graphics * graphics, int width, int height, int mNumPokeballs);
+	void DrawInventory(Gdiplus::Graphics * graphics, int width, int height, int mNumPokeballs, int mPikachus,
+		int mBlastoise, int mBulbasaurs, int mCharmander);
 
 
 	/** Accept visitor
@@ -68,8 +69,27 @@ private:
 	int mPokeBallX;  ///< X coordinate of pokeball
 	int mPokeBallY;  ///< Y coordinate of pokeball
 
+	/// Used to draw Pikachu
+	Gdiplus::Bitmap *mPikachu; ///< Image of a pikachu
+	int mPikachuX;  ///< X coordinate of pikachu
+	int mPikachuY;  ///< Y coordinate of pikachu
 
+	/// Used to draw a Blastoise
+	Gdiplus::Bitmap *mBlastoise; ///< Image of a Blastoise
+	int mBlastoiseX;  ///< X coordinate of Blastoise
+	int mBlastoiseY;  ///< Y coordinate of Blastoise
 	
+	/// Used to draw a Bulbasaur
+	Gdiplus::Bitmap *mBulbasaur; ///< Image of a Bulbasaur
+	int mBulbasaurX;  ///< X coordinate of Bulbasaur
+	int mBulbasaurY;  ///< Y coordinate of Bulbasaur
+
+	/// Used to draw a Charmander
+	Gdiplus::Bitmap *mCharmander; ///< Image of a Charmander
+	int mCharmanderX;  ///< X coordinate of Charmander
+	int mCharmanderY;  ///< Y coordinate of Charmander
+
+	double mPokemonOffset; ///< used to draw Pokemon in proper order
 
 	/// All of our active game objects
 	std::vector<std::shared_ptr<CGameObject> > mObjects;

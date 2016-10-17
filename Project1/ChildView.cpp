@@ -122,7 +122,8 @@ void CChildView::OnPaint()
 
 	mPokeOrbitApp.OnDraw(&graphics, rect.Width(), rect.Height());
 
-	mPokeOrbitApp.DrawInventory(&graphics, rect.Width(), rect.Height(), mInventory.PokeBallCount()); ///< draws the inventory of pokeballs
+	mPokeOrbitApp.DrawInventory(&graphics, rect.Width(), rect.Height(), mInventory.PokeBallCount(), mInventory.PikachuCount(),
+		mInventory.BlastoiseCount(), mInventory.BulbasaurCount(), mInventory.CharmanderCount()); ///< draws the inventory of pokeballs
 
 	// Check for pokestops that need to be made clickable
 	CPokeStopVisitor pokeStopVisitor;

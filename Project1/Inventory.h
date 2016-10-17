@@ -29,8 +29,12 @@ public:
 
 	void ThrowBall(CPokeOrbitApp *pokeOrbit, std::shared_ptr<CPokeBall> object);
 
-	/// Returns the count of pokeballs
+	/// Returns the count of objects
 	int PokeBallCount() { return mPokeBalls; }
+	int PikachuCount() { return mPikachus; }
+	int BlastoiseCount() { return mBlastoise; }
+	int BulbasaurCount() { return mBulbasaurs; }
+	int CharmanderCount() { return mCharmander; }
 
 	void AddPokeBalls(int numPokeBalls);
 
