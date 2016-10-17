@@ -23,9 +23,7 @@ public:
 protected:
 	CPokemon(CPokeOrbitApp* pokeOrbit, std::wstring file, double min, double max);
 private:
-	///minSpeed of pokemon
-	double mMinSpeed;
-	///maxSpeed of pokemon
-	double mMaxSpeed;
+	///Speed of pokemon
+	double mSpeed;
 };
 

@@ -6,6 +6,7 @@
 
 #include "stdafx.h"
 #include <string>
+#include <random>
 #include "PokeOrbitApp.h"
 #include "Pokemon.h"
 
@@ -30,7 +31,7 @@ CPokemon::~CPokemon()
 CPokemon::CPokemon(CPokeOrbitApp* pokeOrbit, wstring file, double min, double max) :
 	CGameObject(pokeOrbit, min, max, filename)
 {
-	mMinSpeed = min; 
-	mMaxSpeed = max;
+	double random = ((double)rand() / (RAND_MAX));
+	mSpeed = random * (max - min) + min;
 }
 

@@ -12,6 +12,7 @@
 #include "GameObject.h"
 #include "PokeBall.h"
 #include "DoubleBufferDC.h"
+#include "Emitter.h"
 
 #include <cmath>
 #include <memory>
@@ -40,6 +41,9 @@ const static int Height = 1100;
 
 /// Radius of the playing read in virtual pixels
 const static int Radius = 500;
+
+///Time elapsed since last draw
+double timeSinceLastDraw;
 
 // CChildView
 
@@ -105,6 +109,8 @@ void CChildView::OnPaint()
 
 		mLastTime = time.QuadPart;
 		mTimeFreq = double(freq.QuadPart);
+		CEmitter emitter(&mPokeOrbitApp);
+		emitter.Emit();
 	}
 
 	/*
