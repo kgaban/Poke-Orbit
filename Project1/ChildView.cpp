@@ -93,6 +93,8 @@ void CChildView::OnPaint()
 	CRect rect;
 	GetClientRect(&rect);
 
+
+
 	if (mFirstDraw)
 	{
 		mFirstDraw = false;

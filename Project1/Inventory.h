@@ -40,13 +40,13 @@ public:
 
 private:
 	/// Pikachu count
-	int mPikachus = 0;
+	int mPikachus = 4;
 	/// Blastoise count
-	int mBlastoise = 0;
+	int mBlastoise = 2;
 	/// Bulbasaur count
-	int mBulbasaurs = 0;
+	int mBulbasaurs = 5;
 	/// Charmander count
-	int mCharmander = 0;
+	int mCharmander = 6;
 
 	/// Pokeball count
 	int mPokeBalls = 13;
