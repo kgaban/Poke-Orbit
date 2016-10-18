@@ -178,7 +178,7 @@ void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics,  int width, int 
 		mPokeBallY += mPokeBall->GetWidth() + 20;
 	}
 
-	mPokemonOffset = 0; ///< default offset ** gets incremented when implemented below**
+	mPokemonOffset = 125; ///< default offset 
 
 	/** PSEUDOCODE
 	 * if first pokemon caught, display it and increment offset by image height
@@ -202,126 +202,76 @@ void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics,  int width, int 
 	converter4 = to_wstring(Charmanders);
 	const wchar_t* numCharmanders = converter4.c_str();
 	
-	
-	
-
 	mPokemonX = CPokeOrbitApp::Width / 2 - 100;
 	mPokemonY = -CPokeOrbitApp::Height / 2 + 20;
 
-	bool pikachuDrawn = false;
-	bool blastoiseDrawn = false;
-	bool bulbasaurDrawn = false;
-	bool charmanderDrawn = false;
+	/// Set checks initially to false
+	mPikachuDrawn = false;
+	mBlastoiseDrawn = false;
+	mBulbasaurDrawn = false;
+	mCharmanderDrawn = false;
+
 	for (mDrawOrder = 0; mDrawOrder <= 4; mDrawOrder++)
 	{
-		if (mDrawOrder == 0)
+		if (mDrawOrder >= 0)
 		{
-			if (Pikachus != 0)
+			if (Pikachus != 0 && mPikachuDrawn == false)
 			{
 				graphics->DrawImage(mPikachu, mPokemonX, mPokemonY,
 					mPikachu->GetWidth(), mPikachu->GetHeight());
 
 				/// Print out number of Pikachus
 				SolidBrush white(Color(255, 255, 255));
-				graphics->DrawString(numPikachus, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, -CPokeOrbitApp::Height / 2 + 50), &white);
+				graphics->DrawString(numPikachus, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, 
+					-CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset*mDrawOrder), &white);
 
-				mPokemonOffset += mPikachu->GetHeight();
-				pikachuDrawn = true;
+				//mPokemonOffset += mPikachu->GetHeight();
+				mPikachuDrawn = true;
 			}
 
-			else if (Blastoises != 0)
+			else if (Blastoises != 0 && mBlastoiseDrawn == false)
 			{
 				graphics->DrawImage(mBlastoise, mPokemonX, mPokemonY,
 					mBlastoise->GetWidth(), mBlastoise->GetHeight());
 
 				/// Print out number of Blastoises
 				SolidBrush white(Color(255, 255, 255));
-				graphics->DrawString(numBlastoises, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, -CPokeOrbitApp::Height / 2 + 50), &white);
+				graphics->DrawString(numBlastoises, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, 
+					-CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset*mDrawOrder), &white);
 
-				mPokemonOffset += mBlastoise->GetHeight();
-				blastoiseDrawn = true;
+				//mPokemonOffset += mBlastoise->GetHeight();
+				mBlastoiseDrawn = true;
 			}
 
-			else if (Bulbasaurs != 0)
+			else if (Bulbasaurs != 0 && mBulbasaurDrawn == false)
 			{
 				graphics->DrawImage(mBulbasaur, mPokemonX, mPokemonY,
 					mBulbasaur->GetWidth(), mBulbasaur->GetHeight());
 
 				/// Print out number of Bulbasaurs
 				SolidBrush white(Color(255, 255, 255));
-				graphics->DrawString(numBulbasaurs, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, -CPokeOrbitApp::Height / 2 + 50), &white);
+				graphics->DrawString(numBulbasaurs, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, 
+					-CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset*mDrawOrder), &white);
 
-				mPokemonOffset += mBulbasaur->GetHeight();
-				bulbasaurDrawn = true;
+				//mPokemonOffset += mBulbasaur->GetHeight();
+				mBulbasaurDrawn = true;
 			}
-			else
+			else if (Charmanders != 0 && mCharmanderDrawn == false)
 			{
 				graphics->DrawImage(mCharmander, mPokemonX, mPokemonY,
 					mCharmander->GetWidth(), mCharmander->GetHeight());
 
 				/// Print out number of Charmanders
 				SolidBrush white(Color(255, 255, 255));
-				graphics->DrawString(numCharmanders, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, -CPokeOrbitApp::Height / 2 + 50), &white);
+				graphics->DrawString(numCharmanders, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, 
+					-CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset*mDrawOrder), &white);
 
-				mPokemonOffset += mCharmander->GetHeight();
-				charmanderDrawn = true;
+				//mPokemonOffset += mCharmander->GetHeight();
+				mCharmanderDrawn = true;
 			}
+
+			mPokemonY += mPokemonOffset; ///< increment mPokemonY by the offset
 		}
-
-		else if (mDrawOrder > 0)
-		{
-			if (Pikachus != 0 && pikachuDrawn == false)
-			{
-				graphics->DrawImage(mPikachu, mPokemonX, mPokemonY,
-					mPikachu->GetWidth(), mPikachu->GetHeight());
-
-				/// Print out number of Pikachus
-				SolidBrush white(Color(255, 255, 255));
-				graphics->DrawString(numPikachus, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, -CPokeOrbitApp::Height / 2 + 50), &white);
-
-				mPokemonOffset += mPikachu->GetHeight();
-				pikachuDrawn = true;
-			}
-
-			else if (Blastoises != 0 && blastoiseDrawn == false)
-			{
-				mPokemonY += mPokemonOffset;
-				graphics->DrawImage(mBlastoise, mPokemonX, mPokemonY,
-					mBlastoise->GetWidth(), mBlastoise->GetHeight());
-
-				/// Print out number of Blastoises
-				SolidBrush white(Color(255, 255, 255));
-				graphics->DrawString(numBlastoises, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, -CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset), &white);
-
-				mPokemonOffset += mBlastoise->GetHeight();
-				blastoiseDrawn = true;
-			}
-
-			else if (Bulbasaurs != 0 && bulbasaurDrawn == false)
-			{
-				graphics->DrawImage(mBulbasaur, mPokemonX, mPokemonY,
-					mBulbasaur->GetWidth(), mBulbasaur->GetHeight());
-
-				/// Print out number of Bulbasaurs
-				SolidBrush white(Color(255, 255, 255));
-				graphics->DrawString(numBulbasaurs, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, -CPokeOrbitApp::Height / 2 + 50), &white);
-
-				mPokemonOffset += mBulbasaur->GetHeight();
-				bulbasaurDrawn = true;
-			}
-			else if (Charmanders != 0 && charmanderDrawn == false)
-			{
-				graphics->DrawImage(mCharmander, mPokemonX, mPokemonY,
-					mCharmander->GetWidth(), mCharmander->GetHeight());
-
-				/// Print out number of Charmanders
-				SolidBrush white(Color(255, 255, 255));
-				graphics->DrawString(numCharmanders, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, -CPokeOrbitApp::Height / 2 + 50), &white);
-
-				mPokemonOffset += mCharmander->GetHeight();
-				charmanderDrawn = true;
-			}
-		}
-
-	}
+		
+	} //< end for loop
 }

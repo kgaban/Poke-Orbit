@@ -89,6 +89,11 @@ private:
 
 	int mDrawOrder;
 
+	bool mPikachuDrawn;
+	bool mBlastoiseDrawn;
+	bool mBulbasaurDrawn;
+	bool mCharmanderDrawn;
+
 	/// All of our active game objects
 	std::vector<std::shared_ptr<CGameObject> > mObjects;
 
