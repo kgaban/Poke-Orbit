@@ -124,8 +124,9 @@ void CChildView::OnPaint()
 		mLastTime = time.QuadPart;
 		mTimeFreq = double(freq.QuadPart);
 		emitter.EmitPokemon();
+		emitter.EmitPokeStop();
 		timeOfNextPokemonEmission = rand() % 12 + 3;
-		timeOfNextPokeStopEmission = rand() % 25 + 20;
+		timeOfNextPokeStopEmission = rand() % 10 + 15;
 	}
 
 	/*
@@ -148,7 +149,7 @@ void CChildView::OnPaint()
 	}
 	if (emitterTime >= timeOfNextPokeStopEmission)
 	{
-		timeOfNextPokeStopEmission = emitterTime + rand() % 25 + 20;
+		timeOfNextPokeStopEmission = emitterTime + rand() % 10 + 20;
 		emitter.EmitPokeStop();
 	}
 	mPokeOrbitApp.OnDraw(&graphics, rect.Width(), rect.Height());
