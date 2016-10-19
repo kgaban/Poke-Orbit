@@ -285,5 +285,5 @@ void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics,  int width, int 
 			mPokemonY += (int)mPokemonOffset; ///< increment mPokemonY by the offset
 		}
 		
-	} //< end for loop
+	} ///< end for loop
 }
