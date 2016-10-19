@@ -61,7 +61,7 @@ private:
 	/// Playing area height in virtual pixels
 	const static int Height = 1100;
 
-	/// Radius of the playing read in virtual pixels
+	/// Radius of the playing feild in virtual pixels
 	const static int Radius = 500;
 
 	/// Used to draw a pokeball
