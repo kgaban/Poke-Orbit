@@ -44,6 +44,8 @@ private:
 	/// Our inventory
 	CInventory mInventory;
 
+	/// 
+	CEmitter* mEmitter;
 	/// Check if it's the first time drawing
 	bool mFirstDraw = true;
 

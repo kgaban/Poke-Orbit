@@ -29,6 +29,6 @@ CPokemon::CPokemon(CPokeOrbitApp* pokeOrbit, wstring file, double min, double ma
 	CGameObject(pokeOrbit, file)
 {
 	double random = ((double)rand() / (RAND_MAX));
-	mSpeed = random * (max - min) + min;
+	SetSpeed(random * (max - min) + min);
 }
 

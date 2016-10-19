@@ -21,7 +21,7 @@ class CPokeOrbitApp;
 class CEmitter
 {
 public:
-	CEmitter(CPokeOrbitApp * pokeOrbit, Gdiplus::Graphics *);
+	CEmitter(CPokeOrbitApp * pokeOrbit);
 	virtual ~CEmitter();
 	void EmitPokemon();
 	void EmitPokeStop();
@@ -30,8 +30,13 @@ public:
 private:
 	///pokeOrbitApp to emit in
 	CPokeOrbitApp * mPokeOrbitApp;
-	/// Graphics context to draw in
-	Gdiplus::Graphics* mGraphics;
-	
+	///Time since pokemon emission
+	double mPokemonTime;
+	///Time since pokestop emission
+	double mPokeStopTime;
+	///time of next pokemon emission
+	double mTimeOfNextPokemonEmission;
+	///time of next pokestop emission
+	double mTimeOfNextPokeStopEmission;
 };
 

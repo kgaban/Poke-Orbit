@@ -32,6 +32,8 @@ public:
 
 	void SetImage(const std::wstring filename);
 
+	///Setter for mSpeed
+	void SetSpeed(double speed) { mSpeed = speed; }
 	/// Return the object's x position
 	double GetX() { return mX; }
 	/// Return the object's y position
@@ -64,7 +66,7 @@ private:
 
 	/// Y position
 	double mY = 0;
-protected:
+
 	///speed of the object
 	double mSpeed;
 

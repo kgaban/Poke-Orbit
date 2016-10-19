@@ -56,7 +56,5 @@ private:
 	/// The total lifespan of the pokestop
 	double mLifespan = 0;
 
-	/// Speed of the pokestop
-	double mSpeed;
 };
 

@@ -29,10 +29,14 @@ using namespace Gdiplus;
 * \param x The x position of the pokestop
 * \param y The y position of the pokestop
 */
-CEmitter::CEmitter(CPokeOrbitApp * pokeOrbit, Graphics * graphics)
+CEmitter::CEmitter(CPokeOrbitApp * pokeOrbit)
 {
 	mPokeOrbitApp = pokeOrbit;
-	mGraphics = graphics;
+	mPokemonTime = 0;
+	mPokeStopTime = 0;
+	mt19937_64 rand(chrono::system_clock::now().time_since_epoch().count());
+	mTimeOfNextPokemonEmission= rand() % 12 + 3;
+	mTimeOfNextPokeStopEmission = rand() % 10 + 20;
 }
 
 /// Destructor
@@ -80,5 +84,23 @@ void CEmitter::EmitPokeStop()
 	mPokeOrbitApp->Add(object);
 }
 
+void CEmitter::Update(double elapsed)
+{
+	mt19937_64 rand(chrono::system_clock::now().time_since_epoch().count());
+	mPokemonTime += elapsed;
+	mPokeStopTime += elapsed;
+	if (mPokemonTime >= mTimeOfNextPokemonEmission)
+	{
+		mTimeOfNextPokemonEmission =  rand() % 12 + 3;
+		mPokemonTime = 0;
+		EmitPokemon();
+	}
+	if (mPokeStopTime >= mTimeOfNextPokeStopEmission)
+	{
+		mTimeOfNextPokeStopEmission = rand() % 10 + 20;
+		mPokeStopTime = 0;
+		EmitPokeStop();
+	}
+}
 
 

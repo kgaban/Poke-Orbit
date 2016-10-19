@@ -34,7 +34,7 @@ CPokeStop::CPokeStop(CPokeOrbitApp * pokeOrbit)
 {
 
 	double factor = (double)rand() / RAND_MAX;
-	mSpeed = PokestopMinSpeed + factor*(PokestopMaxSpeed - PokestopMinSpeed);
+	SetSpeed(PokestopMinSpeed + factor*(PokestopMaxSpeed - PokestopMinSpeed));
 }
 /// Destructor
 CPokeStop::~CPokeStop()
@@ -50,25 +50,7 @@ void CPokeStop::Update(double elapsed)
 	mClickTime += elapsed;
 	mLifespan += elapsed;
 
-	double x = GetX();
-	double y = GetY();
-
-	double theta = atan(y / x);
-	double c = (sqrt(pow(x, 2) + pow(y, 2)));
-	theta -= mSpeed*elapsed;
-
-	if (x < 0)
-	{
-		x = cos(theta) * -c;
-		y = sin(theta) * -c;
-	}
-	else
-	{
-		x = cos(theta) * c;
-		y = sin(theta) * c;
-	}
-
-	SetPosition(x, y);
+	CGameObject::Update(elapsed);
 }
 
 

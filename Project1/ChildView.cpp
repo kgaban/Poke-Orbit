@@ -47,7 +47,7 @@ const static double Radius = 500;
 double timeSinceLastDraw=0;
 
 ///Time since start
-double emitterTime=0;
+double mEmitterTime=0;
 
 /// Time of next pokestop emission
 double timeOfNextPokeStopEmission;
@@ -107,13 +107,11 @@ void CChildView::OnPaint()
 	CRect rect;
 	GetClientRect(&rect);
 
-	CEmitter emitter(&mPokeOrbitApp, &graphics);
-
 	if (mFirstDraw)
 	{
 		mFirstDraw = false;
 		SetTimer(1, FrameDuration, nullptr);
-
+		mEmitter = new CEmitter(&mPokeOrbitApp);
 		/*
 		* Initialize the elapsed time system
 		*/
@@ -123,8 +121,8 @@ void CChildView::OnPaint()
 
 		mLastTime = time.QuadPart;
 		mTimeFreq = double(freq.QuadPart);
-		emitter.EmitPokemon();
-		emitter.EmitPokeStop();
+		mEmitter->EmitPokemon();
+		mEmitter->EmitPokeStop();
 		timeOfNextPokemonEmission = rand() % 12 + 3;
 		timeOfNextPokeStopEmission = rand() % 10 + 15;
 	}
@@ -139,19 +137,7 @@ void CChildView::OnPaint()
 	mLastTime = time.QuadPart;
 	 
 	mPokeOrbitApp.Update(elapsed);
-	//mersenne twister using time as a seed to decide what type of object to emit
-	mt19937_64 rand(chrono::system_clock::now().time_since_epoch().count());
-	emitterTime += elapsed;
-	if (emitterTime >= timeOfNextPokemonEmission)
-	{
-		timeOfNextPokemonEmission = emitterTime + rand() % 12 + 3;
-		emitter.EmitPokemon();
-	}
-	if (emitterTime >= timeOfNextPokeStopEmission)
-	{
-		timeOfNextPokeStopEmission = emitterTime + rand() % 10 + 20;
-		emitter.EmitPokeStop();
-	}
+	mEmitter->Update(elapsed);
 	mPokeOrbitApp.OnDraw(&graphics, rect.Width(), rect.Height());
 
 	mPokeOrbitApp.DrawInventory(&graphics, rect.Width(), rect.Height(), mInventory.PokeBallCount(), mInventory.PikachuCount(),
