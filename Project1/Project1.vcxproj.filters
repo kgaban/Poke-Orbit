@@ -69,7 +69,16 @@
     <ClInclude Include="Emitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Emission.h">
+    <ClInclude Include="PokeOrbitVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PokeStop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PokeStopClickVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PokeStopVisitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -116,7 +125,16 @@
     <ClCompile Include="Emitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Emission.cpp">
+    <ClCompile Include="PokeOrbitVisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PokeStop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PokeStopClickVisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PokeStopVisitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

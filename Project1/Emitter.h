@@ -1,17 +1,43 @@
+/**
+* \file PokeStop.h
+*
+* \author Marc VandenBerg
+*
+* Class to implement pokestops in our game
+*/
+
+
+
 #pragma once
+
+#include <memory>
 #include "GameObject.h"
 #include "PokeOrbitApp.h"
-#include <cmath>
+
+class CPokeOrbitApp;
+
+/** Implementation of Pokestops
+*/
 class CEmitter
 {
 public:
-	CEmitter() = delete;
-	CEmitter(const CEmitter &) = delete;
-	CEmitter(CPokeOrbitApp*);
+	CEmitter(CPokeOrbitApp * pokeOrbit, Gdiplus::Graphics *);
 	virtual ~CEmitter();
-	void Emit();
+	void EmitPokemon();
+	void EmitPokeStop();
+	void Update(double);
+
 private:
-	double timeSinceEmission;
+	///Time since start
+	double mTime;
+	/// Time of next pokestop emission
+	double mTimeOfNextPokeStopEmission;
+	/// Time of next pokemon emission
+	double mTimeOfNextPokemonEmission;
+	///pokeOrbitApp to emit in
 	CPokeOrbitApp * mPokeOrbitApp;
+	/// Graphics context to draw in
+	Gdiplus::Graphics* mGraphics;
+	
 };
 

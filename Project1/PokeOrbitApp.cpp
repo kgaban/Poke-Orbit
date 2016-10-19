@@ -29,9 +29,32 @@ CPokeOrbitApp::CPokeOrbitApp()
 	mPokeBall = Bitmap::FromFile(L"images/pokeball.png");
 	if (mPokeBall->GetLastStatus() != Ok)
 	{
-		AfxMessageBox(L"Failed to open images/ash.png");
+		AfxMessageBox(L"Failed to open images/pokeball.png");
+	}
+	
+	mPikachu = Bitmap::FromFile(L"images/pikachu.png");
+	if (mPikachu->GetLastStatus() != Ok)
+	{
+		AfxMessageBox(L"Failed to open images/pikachu.png");
 	}
 
+	mBlastoise = Bitmap::FromFile(L"images/blastoise.png");
+	if (mBlastoise->GetLastStatus() != Ok)
+	{
+		AfxMessageBox(L"Failed to open images/blastoise.png");
+	}
+
+	mBulbasaur = Bitmap::FromFile(L"images/bulbasaur.png");
+	if (mBulbasaur->GetLastStatus() != Ok)
+	{
+		AfxMessageBox(L"Failed to open images/bulbasaur.png");
+	}
+
+	mCharmander = Bitmap::FromFile(L"images/charmander.png");
+	if (mCharmander->GetLastStatus() != Ok)
+	{
+		AfxMessageBox(L"Failed to open images/charmander.png");
+	}
 }
 
 /// Destructor
@@ -138,13 +161,14 @@ void CPokeOrbitApp::RemoveObject(shared_ptr<CGameObject> object)
 	}
 }
 
-void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics, int width, int height, int numPokeBalls)
+void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics,  int width, int height, int numPokeBalls, 
+	int Pikachus, int Blastoises, int Bulbasaurs, int Charmanders)
 {
 	/// Set the coordinates for the first PokeBall
 	mPokeBallX = -CPokeOrbitApp::Width / 2;
 	mPokeBallY = -CPokeOrbitApp::Height / 2 + 20;
 
-	/// Draws pokeballs ** FIGURE OUT HOW TO PASS NUM OF POKEBALLS HERE**
+	/// Draws pokeballs
 	for (int j = 0; j < numPokeBalls; j++)
 	{
 		graphics->DrawImage(mPokeBall, mPokeBallX, mPokeBallY,
@@ -153,4 +177,101 @@ void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics, int width, int h
 		/// increment for every new PokeBall
 		mPokeBallY += mPokeBall->GetWidth() + 20;
 	}
+
+	mPokemonOffset = 125; ///< default offset 
+
+	/** PSEUDOCODE
+	 * if first pokemon caught, display it and increment offset by image height
+	 * if second pokemon caught, display it and increment offset
+	 * etc..
+	 * NOTE: display count along with image so may need a horizontal offset to make space for that.
+	 */
+
+	 /// Create font
+	FontFamily fontFamily(L"Arial");
+	Gdiplus::Font font(&fontFamily, 20);
+
+	/// Used to change int to const wchar_t*
+	wstring converter1, converter2, converter3, converter4;
+	converter1 = to_wstring(Pikachus);
+	const wchar_t* numPikachus = converter1.c_str();
+	converter2 = to_wstring(Blastoises);
+	const wchar_t* numBlastoises = converter2.c_str();
+	converter3 = to_wstring(Bulbasaurs);
+	const wchar_t* numBulbasaurs = converter3.c_str();
+	converter4 = to_wstring(Charmanders);
+	const wchar_t* numCharmanders = converter4.c_str();
+	
+	mPokemonX = CPokeOrbitApp::Width / 2 - 100;
+	mPokemonY = -CPokeOrbitApp::Height / 2 + 20;
+
+	/// Set checks initially to false
+	mPikachuDrawn = false;
+	mBlastoiseDrawn = false;
+	mBulbasaurDrawn = false;
+	mCharmanderDrawn = false;
+
+	for (mDrawOrder = 0; mDrawOrder <= 4; mDrawOrder++)
+	{
+		if (mDrawOrder >= 0)
+		{
+			if (Pikachus != 0 && mPikachuDrawn == false)
+			{
+				graphics->DrawImage(mPikachu, mPokemonX, mPokemonY,
+					mPikachu->GetWidth(), mPikachu->GetHeight());
+
+				/// Print out number of Pikachus
+				SolidBrush white(Color(255, 255, 255));
+				graphics->DrawString(numPikachus, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, 
+					-CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset*mDrawOrder), &white);
+
+				//mPokemonOffset += mPikachu->GetHeight();
+				mPikachuDrawn = true;
+			}
+
+			else if (Blastoises != 0 && mBlastoiseDrawn == false)
+			{
+				graphics->DrawImage(mBlastoise, mPokemonX, mPokemonY,
+					mBlastoise->GetWidth(), mBlastoise->GetHeight());
+
+				/// Print out number of Blastoises
+				SolidBrush white(Color(255, 255, 255));
+				graphics->DrawString(numBlastoises, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, 
+					-CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset*mDrawOrder), &white);
+
+				//mPokemonOffset += mBlastoise->GetHeight();
+				mBlastoiseDrawn = true;
+			}
+
+			else if (Bulbasaurs != 0 && mBulbasaurDrawn == false)
+			{
+				graphics->DrawImage(mBulbasaur, mPokemonX, mPokemonY,
+					mBulbasaur->GetWidth(), mBulbasaur->GetHeight());
+
+				/// Print out number of Bulbasaurs
+				SolidBrush white(Color(255, 255, 255));
+				graphics->DrawString(numBulbasaurs, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, 
+					-CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset*mDrawOrder), &white);
+
+				//mPokemonOffset += mBulbasaur->GetHeight();
+				mBulbasaurDrawn = true;
+			}
+			else if (Charmanders != 0 && mCharmanderDrawn == false)
+			{
+				graphics->DrawImage(mCharmander, mPokemonX, mPokemonY,
+					mCharmander->GetWidth(), mCharmander->GetHeight());
+
+				/// Print out number of Charmanders
+				SolidBrush white(Color(255, 255, 255));
+				graphics->DrawString(numCharmanders, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, 
+					-CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset*mDrawOrder), &white);
+
+				//mPokemonOffset += mCharmander->GetHeight();
+				mCharmanderDrawn = true;
+			}
+
+			mPokemonY += mPokemonOffset; ///< increment mPokemonY by the offset
+		}
+		
+	} //< end for loop
 }

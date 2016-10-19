@@ -11,13 +11,34 @@
 #include "stdafx.h"
 #include "PokeOrbitApp.h"
 #include "GameObject.h"
-
+#include <chrono>
+#include <random>
 #include <string>
 #include <memory>
 #include <cmath>
 
 using namespace std;
 using namespace Gdiplus;
+
+
+
+/** Constructor
+* \param pokeOrbit - the PokeOrbit game this object is a part of
+* \param x either the x position or the x speed of the object
+* \param y either the y position or the y speed of the object
+* \param filename = name of file containing image for the object
+*/
+CGameObject::CGameObject(CPokeOrbitApp * pokeOrbit, wstring filename)
+{
+	mPokeOrbitApp = pokeOrbit;
+	SetImage(filename);
+	//mersenne twister using time as a seed to decide what type of object to emit
+	mt19937_64 rand(chrono::system_clock::now().time_since_epoch().count());
+	mX = 56;
+	mY = 140;
+}
+
+
 
 CGameObject::~CGameObject()
 {
@@ -44,10 +65,25 @@ void CGameObject::Draw(Gdiplus::Graphics * graphics)
 * \param x The x position
 * \param y The y position
 */
-void CGameObject::SetPosition(int x, int y)
+void CGameObject::SetPosition(double x, double y)
 {
 	mX = x;
 	mY = y;
+}
+
+
+/** Sets the image of the game object
+* \param filename The file name of the image
+*/
+void CGameObject::SetImage(const wstring filename)
+{
+	mObjectImage = unique_ptr<Bitmap>(Bitmap::FromFile(filename.c_str()));
+	if (mObjectImage->GetLastStatus() != Ok)
+	{
+		wstring msg(L"Failed to open ");
+		msg += filename;
+		AfxMessageBox(msg.c_str());
+	}
 }
 
 
@@ -62,20 +98,65 @@ double CGameObject::GetDist()
 }
 
 
-/** Constructor
-* \param pokeOrbit - the PokeOrbit game this object is a part of
-* \param x either the x position or the x speed of the object
-* \param y either the y position or the y speed of the object
-* \param filename = name of file containing image for the object
+/** Test whether or not the object has been clicked
+* \param x The x position
+* \param y The y position
+* \return bool The true or false result of the hit test
 */
-CGameObject::CGameObject(CPokeOrbitApp * pokeOrbit, int x, int y, wstring filename)
+bool CGameObject::HitTest(double x, double y)
 {
-	mPokeOrbitApp = pokeOrbit;
-	mObjectImage = unique_ptr<Bitmap>(Bitmap::FromFile(filename.c_str()));
-	if (mObjectImage->GetLastStatus() != Ok)
+	double wid = mObjectImage->GetWidth();
+	double hit = mObjectImage->GetHeight();
+
+	// Make x and y relative to the top-left corner of the bitmap image
+	// Subtracting the center makes x, y relative to the image center
+	// Adding half the size makes x, y relative to theimage top corner
+	double testX = x - GetX() + wid/2;
+	double testY = y - GetY() + hit/2;
+
+	// Test to see if x, y are in the image
+	if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
 	{
-		wstring msg(L"Failed to open ");
-		msg += filename;
-		AfxMessageBox(msg.c_str());
+		// We are outside the image
+		return false;
 	}
+
+	// Test to see if x, y are in the drawn part of the image
+	auto format = mObjectImage->GetPixelFormat();
+	if (format == PixelFormat32bppARGB || format == PixelFormat32bppPARGB)
+	{
+		// This image has an alpha map, which implements the 
+		// transparency. If so, we should check to see if we
+		// clicked on a pixel where alpha is not zero, meaning
+		// the pixel shows on the screen.
+		Color color;
+		mObjectImage->GetPixel((int)testX, (int)testY, &color);
+		return color.GetAlpha() != 0;
+	}
+	else {
+		return true;
+	}
+}
+
+void CGameObject::Update(double elapsed)
+{
+	double x = GetX();
+	double y = GetY();
+
+	double theta = atan(y / x);
+	double c = (sqrt(pow(x, 2) + pow(y, 2)));
+	theta -= mSpeed*elapsed;
+
+	if (x < 0)
+	{
+		x = cos(theta) * -c;
+		y = sin(theta) * -c;
+	}
+	else
+	{
+		x = cos(theta) * c;
+		y = sin(theta) * c;
+	}
+
+	SetPosition(x, y);
 }

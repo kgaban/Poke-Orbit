@@ -12,6 +12,10 @@
 #include "GameObject.h"
 #include "PokeBall.h"
 #include "DoubleBufferDC.h"
+#include "PokeStop.h"
+#include "PokeStopVisitor.h"
+#include "PokeStopClickVisitor.h"
+#include "Emitter.h"
 
 #include <cmath>
 #include <memory>
@@ -24,25 +28,22 @@ using namespace Gdiplus;
 using namespace std;
 
 /// Frame duration in milliseconds
-const int FrameDuration = 20;
-
-/// An empty file name to use for instantiation
-const wstring filename = L"images/nofilehere.png";
+const int FrameDuration = 7;
 
 /// Max pokeball speed
-const double maxPokeBallSpeed = 400;
+const double maxPokeBallSpeed = 530;
 
 /// Playing area width in virtual pixels
-const static int Width = 1400;
+const static double Width = 1400;
 
 /// Playing area height in virtual pixels
-const static int Height = 1100;
+const static double Height = 1100;
 
 /// Radius of the playing read in virtual pixels
-const static int Radius = 500;
+const static double Radius = 500;
 
 ///Time elapsed since last draw
-double timeSinceLastDraw;
+double timeSinceLastDraw=0;
 
 // CChildView
 
@@ -62,6 +63,8 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_LBUTTONUP()
 	ON_WM_TIMER()
 	ON_WM_ERASEBKGND()
+//	ON_WM_LBUTTONDOWN()
+ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 
@@ -94,6 +97,8 @@ void CChildView::OnPaint()
 	CRect rect;
 	GetClientRect(&rect);
 
+	CEmitter emitter(&mPokeOrbitApp, &graphics);
+
 	if (mFirstDraw)
 	{
 		mFirstDraw = false;
@@ -108,6 +113,7 @@ void CChildView::OnPaint()
 
 		mLastTime = time.QuadPart;
 		mTimeFreq = double(freq.QuadPart);
+		emitter.EmitPokemon();
 	}
 
 	/*
@@ -118,12 +124,18 @@ void CChildView::OnPaint()
 	long long diff = time.QuadPart - mLastTime;
 	double elapsed = double(diff) / mTimeFreq;
 	mLastTime = time.QuadPart;
-
+	 
 	mPokeOrbitApp.Update(elapsed);
-
+	emitter.Update(elapsed);
 	mPokeOrbitApp.OnDraw(&graphics, rect.Width(), rect.Height());
 
-	mPokeOrbitApp.DrawInventory(&graphics, rect.Width(), rect.Height(), mInventory.PokeBallCount()); ///< draws the inventory of pokeballs
+	mPokeOrbitApp.DrawInventory(&graphics, rect.Width(), rect.Height(), mInventory.PokeBallCount(), mInventory.PikachuCount(),
+		mInventory.BlastoiseCount(), mInventory.BulbasaurCount(), mInventory.CharmanderCount()); ///< draws the inventory of pokeballs
+
+	// Check for pokestops that need to be made clickable
+	CPokeStopVisitor pokeStopVisitor;
+	mPokeOrbitApp.Accept(&pokeStopVisitor, 0, 0);
+
 
 	// TODO: Add your message handler code here
 	
@@ -135,39 +147,52 @@ void CChildView::OnPaint()
 */
 void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	CRect rect;
-	GetClientRect(&rect);
 
-	float scaleX = float(rect.Width()) / float(Width);
-	float scaleY = float(rect.Height()) / float(Height);
-	float scale = min(scaleX, scaleY);
-
-	double x = point.x - (rect.Width()/2.0f);
-	double y = point.y - (rect.Height()/2.0f);
-	double c = (sqrt(pow(x,2) + pow(y,2)));
-
-	double rad = Radius * scale;
-
-	if (c < rad)
+	// Don't throw a pokeball if they just clicked on an available pokestop
+	if (!mPokeStopClick)
 	{
-		double xSpeed;
-		double ySpeed;
+		CRect rect;
+		GetClientRect(&rect);
 
-		double theta = atan((y) / (x));
-		if (x < 0)
+		// Determine scaling for speed
+		float scaleX = float(rect.Width()) / float(Width);
+		float scaleY = float(rect.Height()) / float(Height);
+		float scale = min(scaleX, scaleY);
+
+		// Calculate the distance of the click from the center of the circle
+		double x = point.x - (rect.Width() / 2.0f);
+		double y = point.y - (rect.Height() / 2.0f);
+		double c = (sqrt(pow(x, 2) + pow(y, 2)));
+
+		// Scale the radius
+		double rad = Radius * scale;
+
+		// If the click was within the scaled radius, calculate speed for the ball and throw it-
+		if (c < rad)
 		{
-			xSpeed = cos(theta) * (c / rad) * -maxPokeBallSpeed;
-			ySpeed = sin(theta) * (c / rad) * -maxPokeBallSpeed;
-		}
-		else
-		{
-			xSpeed = cos(theta) * (c / rad) * maxPokeBallSpeed;
-			ySpeed = sin(theta) * (c / rad) * maxPokeBallSpeed;
-		}
+			double xSpeed;
+			double ySpeed;
 
-		auto ball = make_shared<CPokeBall>(&mPokeOrbitApp, xSpeed, ySpeed, filename);
+			double theta = atan((y) / (x));
+			if (x < 0)
+			{
+				xSpeed = cos(theta) * (c / rad) * -maxPokeBallSpeed;
+				ySpeed = sin(theta) * (c / rad) * -maxPokeBallSpeed;
+			}
+			else
+			{
+				xSpeed = cos(theta) * (c / rad) * maxPokeBallSpeed;
+				ySpeed = sin(theta) * (c / rad) * maxPokeBallSpeed;
+			}
 
-		mInventory.ThrowBall(&mPokeOrbitApp, ball);
+			auto ball = make_shared<CPokeBall>(&mPokeOrbitApp, xSpeed, ySpeed);
+
+			mInventory.ThrowBall(&mPokeOrbitApp, ball);
+		}
+	}
+	else
+	{
+		mPokeStopClick = false;
 	}
 
 	Invalidate();
@@ -195,4 +220,33 @@ void CChildView::OnTimer(UINT_PTR nIDEvent)
 BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 {
 	return FALSE;
+}
+
+//void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
+//{
+//	
+//}
+
+
+void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	CRect rect;
+	GetClientRect(&rect);
+
+	// Determine scaling for speed
+	float scaleX = float(rect.Width()) / float(Width);
+	float scaleY = float(rect.Height()) / float(Height);
+	float scale = min(scaleX, scaleY);
+
+	double x = point.x - (rect.Width() / 2.0f);
+	double y = point.y - (rect.Height() / 2.0f);
+
+	CPokeStopClickVisitor visitor;
+	mPokeOrbitApp.Accept(&visitor, x/scale, y/scale);
+
+	if (visitor.mPokeStop)
+	{
+		mInventory.AddPokeBalls(3);
+		mPokeStopClick = true;
+	}
 }

@@ -31,4 +31,5 @@ CBulbasaur::~CBulbasaur()
 CBulbasaur::CBulbasaur(CPokeOrbitApp* pokeOrbit) :
 	CPokemon(pokeOrbit, BulbasaurImageName, BulbasaurMaxSpeed, BulbasaurMinSpeed)
 {
+
 }
