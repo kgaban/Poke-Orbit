@@ -152,12 +152,14 @@ void CChildView::OnPaint()
 		timeOfNextPokeStopEmission = emitterTime + rand() % 10 + 20;
 		emitter.EmitPokeStop();
 	}
+	/// Call OnDraw from CPokeOrbitApp
 	mPokeOrbitApp.OnDraw(&graphics, rect.Width(), rect.Height());
 
+	/// Call DrawInventory from CPokeOrbitApp
 	mPokeOrbitApp.DrawInventory(&graphics, rect.Width(), rect.Height(), mInventory.PokeBallCount(), mInventory.PikachuCount(),
-		mInventory.BlastoiseCount(), mInventory.BulbasaurCount(), mInventory.CharmanderCount()); ///< draws the inventory of pokeballs
+		mInventory.BlastoiseCount(), mInventory.BulbasaurCount(), mInventory.CharmanderCount()); 
 
-	// Check for pokestops that need to be made clickable
+	/// Check for pokestops that need to be made clickable
 	CPokeStopVisitor pokeStopVisitor;
 	mPokeOrbitApp.Accept(&pokeStopVisitor, 0, 0);
 }
