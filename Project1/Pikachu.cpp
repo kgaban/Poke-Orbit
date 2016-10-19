@@ -12,7 +12,7 @@
 using namespace std;
 
 /// Minimum speed of a pikachu
-const double PikachuMinSpeed = 1;
+const double PikachuMinSpeed = 1.5;
 /// Maximum speed of a pikachu
 const double PikachuMaxSpeed = 2;
 /// Pikachu filename

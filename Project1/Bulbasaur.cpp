@@ -14,7 +14,7 @@ using namespace std;
 /// Minimum speed of a Bulbasaur
 const double BulbasaurMinSpeed = 1;
 /// Maximum speed of a Bulbasaur
-const double BulbasaurMaxSpeed = 2;
+const double BulbasaurMaxSpeed = 1.33;
 /// Pikachu filename
 const wstring BulbasaurImageName(L"images/bulbasaur.png");
 

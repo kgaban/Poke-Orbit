@@ -69,9 +69,9 @@
 using namespace std;
 
 /// Minimum speed of a Blastoise
-const double BlastoiseMinSpeed = 1;
+const double BlastoiseMinSpeed = .1;
 /// Maximum speed of a Blastoise
-const double BlastoiseMaxSpeed = 2;
+const double BlastoiseMaxSpeed = .5;
 /// Pikachu filename
 const wstring BlastoiseImageName(L"images/blastoise.png");
 

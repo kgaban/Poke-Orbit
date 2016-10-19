@@ -12,9 +12,9 @@
 using namespace std;
 
 /// Minimum speed of a Charmander
-const double CharmanderMinSpeed = 1;
+const double CharmanderMinSpeed = .66;
 /// Maximum speed of a Charmander
-const double CharmanderMaxSpeed = 2;
+const double CharmanderMaxSpeed = 1;
 /// Pikachu filename
 const wstring CharmanderImageName(L"images/charmander.png");
 
