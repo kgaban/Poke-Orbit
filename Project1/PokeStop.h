@@ -31,6 +31,11 @@ public:
 	
 	void MakeClickable();
 
+	/** Return availability of pokestop for clicking
+	* \return bool Return the availability of the pokestop
+	*/
+	bool Available() { return mAvailable; }
+
 	double GetDist() override;
 
 	/** Accept visitor
