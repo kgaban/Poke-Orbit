@@ -69,30 +69,25 @@ private:
 	int mPokeBallX;  ///< X coordinate of pokeball
 	int mPokeBallY;  ///< Y coordinate of pokeball
 
-	/// Used to draw Pikachu
 	Gdiplus::Bitmap *mPikachu; ///< Image of a pikachu
-
-	/// Used to draw a Blastoise
 	Gdiplus::Bitmap *mBlastoise; ///< Image of a Blastoise
-
-	/// Used to draw a Bulbasaur
 	Gdiplus::Bitmap *mBulbasaur; ///< Image of a Bulbasaur
-
-	/// Used to draw a Charmander
 	Gdiplus::Bitmap *mCharmander; ///< Image of a Charmander
 
+	/// Coordinatees to draw the pokemon for the inventory
 	int mPokemonX;
 	int mPokemonY;
 
 
-	double mPokemonOffset; ///< used to draw Pokemon
+	const double mPokemonOffset = 125;  ///< offset for 
 
-	int mDrawOrder;
+	int mDrawOrder;						///< draw order counter
+	double mHeightOffset;				///< offset for the counter height
 
-	bool mPikachuDrawn;
-	bool mBlastoiseDrawn;
-	bool mBulbasaurDrawn;
-	bool mCharmanderDrawn;
+	bool mPikachuDrawn;					///< checks if a pikachu has been drawn
+	bool mBlastoiseDrawn;				///< checks if a blastoise has been drawn
+	bool mBulbasaurDrawn;				///< checks if a bulbasaur has been drawn
+	bool mCharmanderDrawn;				///< checks if a charmander has been drawn
 
 	/// All of our active game objects
 	std::vector<std::shared_ptr<CGameObject> > mObjects;
