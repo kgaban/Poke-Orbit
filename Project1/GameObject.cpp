@@ -138,6 +138,14 @@ bool CGameObject::HitTest(double x, double y)
 	}
 }
 
+/** Send the GameObject up to see if a pokeball caught it
+* (used by the PokemonCatchVisitor)
+*/
+bool CGameObject::CatchTest()
+{
+	return mPokeOrbitApp->CatchTest(this);
+}
+
 void CGameObject::Update(double elapsed)
 {
 	double x = GetX();

@@ -32,6 +32,8 @@ CPokeStopClickVisitor::~CPokeStopClickVisitor()
 * Visit a PokeStop
 * \param pokeStop The pokestop we're visiting
 * \param pokeOrbit The Poke Orbit App the pokestop is in
+* \param x The x position to test
+* \param y The y position to test
 */
 void CPokeStopClickVisitor::VisitPokeStop(CPokeStop * pokeStop, CPokeOrbitApp * pokeOrbit, double x, double y)
 {

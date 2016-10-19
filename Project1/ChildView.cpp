@@ -16,6 +16,9 @@
 #include "PokeStopVisitor.h"
 #include "PokeStopClickVisitor.h"
 #include "Emitter.h"
+#include "PokemonCatchVisitor.h"
+
+
 #include <random>
 #include <chrono>
 #include <cmath>
@@ -42,18 +45,6 @@ const static double Height = 1100;
 
 /// Radius of the playing read in virtual pixels
 const static double Radius = 500;
-
-///Time elapsed since last draw
-double timeSinceLastDraw=0;
-
-///Time since start
-double mEmitterTime=0;
-
-/// Time of next pokestop emission
-double timeOfNextPokeStopEmission;
-
-/// Time of next pokemon emission
-double timeOfNextPokemonEmission;
 
 // CChildView
 
@@ -123,8 +114,6 @@ void CChildView::OnPaint()
 		mTimeFreq = double(freq.QuadPart);
 		mEmitter->EmitPokemon();
 		mEmitter->EmitPokeStop();
-		timeOfNextPokemonEmission = rand() % 12 + 3;
-		timeOfNextPokeStopEmission = rand() % 10 + 15;
 	}
 
 	/*
@@ -146,6 +135,16 @@ void CChildView::OnPaint()
 	// Check for pokestops that need to be made clickable
 	CPokeStopVisitor pokeStopVisitor;
 	mPokeOrbitApp.Accept(&pokeStopVisitor, 0, 0);
+
+	// Check for pokemon being caught
+	CPokemonCatchVisitor pokemonCatchVisitor;
+	mPokeOrbitApp.Accept(&pokemonCatchVisitor, 0, 0);
+
+	// Add any and all caught pokemon
+	mInventory.AddBlastoise(pokemonCatchVisitor.mBlastoise);
+	mInventory.AddBulbasaur(pokemonCatchVisitor.mBulbasaur);
+	mInventory.AddCharmander(pokemonCatchVisitor.mCharmander);
+	mInventory.AddPikachu(pokemonCatchVisitor.mPikachu);
 }
 
 /**

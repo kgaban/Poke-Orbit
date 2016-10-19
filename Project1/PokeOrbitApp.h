@@ -29,12 +29,18 @@ public:
 
 	void Update(double elapsed);
 
+	void AddBall(std::shared_ptr<CPokeBall> pokeBall);
+
 	void Add(std::shared_ptr<CGameObject> object);
+
+	void RemoveBall(std::shared_ptr<CPokeBall> pokeball);
 
 	void RemoveObject(std::shared_ptr<CGameObject> object);
 
 	void DrawInventory(Gdiplus::Graphics * graphics, int width, int height, int mNumPokeballs, int Pikachus, 
 		int Blastoises, int Bulbasaurs, int Charmanders);
+
+	bool CatchTest(CGameObject *pokemon);
 
 
 	/** Accept visitor
@@ -91,5 +97,8 @@ private:
 
 	/// All of our active game objects
 	std::vector<std::shared_ptr<CGameObject> > mObjects;
+
+	/// All of our active pokeballs
+	std::vector<std::shared_ptr<CPokeBall> > mPokeBalls;
 };
 

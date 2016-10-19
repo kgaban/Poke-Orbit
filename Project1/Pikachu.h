@@ -21,5 +21,7 @@ public:
 	CPikachu(const CPikachu&) = delete;
 	~CPikachu();
 	CPikachu(CPokeOrbitApp* pokeOrbit);
+
+	virtual void AddPoke(CPokemonCatchVisitor *visitor);
 };
 

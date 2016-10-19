@@ -124,10 +124,16 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	}
 
 
-	// Draw our game objects
-	for (auto object : mObjects)
+	// Draw our pokeballs first
+	for (auto pokeBall = mPokeBalls.rbegin(); pokeBall != mPokeBalls.rend(); pokeBall++)
 	{
-		object->Draw(graphics);
+		(*pokeBall)->Draw(graphics);
+	}
+
+	// Draw our pokemon and pokestops second, and in the order of most recent on top
+	for (auto object = mObjects.rbegin(); object != mObjects.rend(); object++)
+	{
+		(*object)->Draw(graphics);
 	}
 }
 
@@ -141,6 +147,19 @@ void CPokeOrbitApp::Update(double elapsed)
 	{
 		object->Update(elapsed);
 	}
+	for (auto pokeBall : mPokeBalls)
+	{
+		pokeBall->Update(elapsed);
+	}
+}
+
+
+/**  Add a pokeball to the app
+* \param pokeBall New pokeball to add
+*/
+void CPokeOrbitApp::AddBall(shared_ptr<CPokeBall> pokeBall)
+{
+	mPokeBalls.push_back(pokeBall);
 }
 
 
@@ -151,6 +170,19 @@ void CPokeOrbitApp::Add(shared_ptr<CGameObject> object)
 {
 	mObjects.push_back(object);
 }
+
+/** Remove a ball from the app
+* \param pokeball Pokeball to be removed
+*/
+void CPokeOrbitApp::RemoveBall(shared_ptr<CPokeBall> pokeball)
+{
+	auto loc = find(begin(mPokeBalls), end(mPokeBalls), pokeball);
+	if (loc != end(mPokeBalls))
+	{
+		mPokeBalls.erase(loc);
+	}
+}
+
 
 /** Remove an object from the app
 * \param object Object to be removed
@@ -286,4 +318,23 @@ void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics,  int width, int 
 		}
 		
 	} ///< end for loop
+}
+
+/** See if a pokemon gets caught by a pokeball
+* \param pokemon The pokemon being tested
+*/
+bool CPokeOrbitApp::CatchTest(CGameObject * pokemon)
+{
+	for (auto pokeBall : mPokeBalls)
+	{
+		if (pokemon->HitTest(pokeBall->GetX(), pokeBall->GetY()))
+		{
+			RemoveBall(pokeBall);
+			// If the pokemon is caught, move it off the gameboard so the OnDraw garbage collects and removes it
+			pokemon->SetPosition(3000, 3000);
+			return true;
+		}
+	}
+	// Return false if no pokeball caught the pokemon
+	return false;
 }

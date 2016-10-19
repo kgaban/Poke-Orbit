@@ -32,3 +32,11 @@ CCharmander::CCharmander(CPokeOrbitApp* pokeOrbit) :
 	CPokemon(pokeOrbit, CharmanderImageName, CharmanderMaxSpeed, CharmanderMinSpeed)
 {
 }
+
+/** Add to the pokemon tally
+* \param visitor The visiting pokemon catcher
+*/
+void CCharmander::AddPoke(CPokemonCatchVisitor * visitor)
+{
+	visitor->mCharmander++;
+}

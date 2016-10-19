@@ -33,3 +33,11 @@ void CPokeStopVisitor::VisitPokeStop(CPokeStop *pokeStop, CPokeOrbitApp *pokeOrb
 {
 	pokeStop->MakeClickable();
 }
+
+/**
+* Visit a Pokemon
+* \param pokemon The pokemon being visited
+*/
+void CPokeStopVisitor::VisitPokemon(CPokemon * pokemon)
+{
+}

@@ -32,3 +32,12 @@ CBlastoise::CBlastoise(CPokeOrbitApp* pokeOrbit) :
 	CPokemon(pokeOrbit, BlastoiseImageName, BlastoiseMaxSpeed, BlastoiseMinSpeed)
 {
 }
+
+
+/** Add to the pokemon tally
+* \param visitor The visiting pokemon catcher
+*/
+void CBlastoise::AddPoke(CPokemonCatchVisitor * visitor)
+{
+	visitor->mBlastoise++;
+}

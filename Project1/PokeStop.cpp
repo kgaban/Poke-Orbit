@@ -86,7 +86,7 @@ double CPokeStop::GetDist()
 	{
 		return 1000;
 	}
-	return 1;
+	return -1;
 }
 
 

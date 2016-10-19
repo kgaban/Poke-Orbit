@@ -43,6 +43,8 @@ public:
 
 	virtual bool HitTest(double x, double y);
 
+	bool CatchTest();
+
 	/** Accept visitor
 	* \param visitor The visitor being accepted
 	* \param pokeOrbit The App containing everything

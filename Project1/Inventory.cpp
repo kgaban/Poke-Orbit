@@ -31,7 +31,7 @@ void CInventory::ThrowBall(CPokeOrbitApp * pokeOrbit, std::shared_ptr<CPokeBall>
 {	
 	if (mPokeBalls > 0)
 	{
-		pokeOrbit->Add(object);
+		pokeOrbit->AddBall(object);
 		mPokeBalls--;
 	}
 }

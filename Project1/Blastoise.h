@@ -21,5 +21,7 @@ public:
 	CBlastoise(const CBlastoise&) = delete;
 	~CBlastoise();
 	CBlastoise(CPokeOrbitApp* pokeOrbit);
+
+	virtual void AddPoke(CPokemonCatchVisitor *visitor);
 };
 

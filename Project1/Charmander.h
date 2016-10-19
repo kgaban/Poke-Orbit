@@ -22,5 +22,7 @@ public:
 	CCharmander(const CCharmander&) = delete;
 	~CCharmander();
 	CCharmander(CPokeOrbitApp* pokeOrbit);
+
+	virtual void AddPoke(CPokemonCatchVisitor *visitor);
 };
 

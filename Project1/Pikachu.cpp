@@ -32,3 +32,11 @@ CPikachu::CPikachu(CPokeOrbitApp* pokeOrbit) :
 	CPokemon(pokeOrbit, PikachuImageName, PikachuMaxSpeed, PikachuMinSpeed)
 {
 }
+
+/** Add to the pokemon tally
+* \param visitor The visiting pokemon catcher
+*/
+void CPikachu::AddPoke(CPokemonCatchVisitor * visitor)
+{
+	visitor->mPikachu++;
+}

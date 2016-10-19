@@ -21,5 +21,7 @@ public:
 	CBulbasaur(const CBulbasaur&) = delete;
 	~CBulbasaur();
 	CBulbasaur(CPokeOrbitApp* pokeOrbit);
+
+	virtual void AddPoke(CPokemonCatchVisitor *visitor);
 };
 

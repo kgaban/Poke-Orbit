@@ -18,6 +18,17 @@ CPokemon::~CPokemon()
 {
 }
 
+/** Accept a visitor
+* \param visitor The visitor to the pokemon
+* \param pokeOrbit the PokeOrbitApp being visited
+* \param x The x position for the visit
+* \param y The y position for the visit
+*/
+void CPokemon::Accept(CPokeOrbitVisitor * visitor, CPokeOrbitApp * pokeOrbit, double x, double y)
+{
+	visitor->VisitPokemon(this);
+}
+
 /**
 * Constructor
 * \param pokeOrbit - the PokeOrbit game this pokemon is a part of

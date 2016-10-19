@@ -193,6 +193,7 @@
     <ClInclude Include="Pikachu.h" />
     <ClInclude Include="PokeBall.h" />
     <ClInclude Include="Pokemon.h" />
+    <ClInclude Include="PokemonCatchVisitor.h" />
     <ClInclude Include="PokeOrbitApp.h" />
     <ClInclude Include="PokeOrbitVisitor.h" />
     <ClInclude Include="PokeStop.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="Pikachu.cpp" />
     <ClCompile Include="PokeBall.cpp" />
     <ClCompile Include="Pokemon.cpp" />
+    <ClCompile Include="PokemonCatchVisitor.cpp" />
     <ClCompile Include="PokeOrbitApp.cpp" />
     <ClCompile Include="PokeOrbitVisitor.cpp" />
     <ClCompile Include="PokeStop.cpp" />

@@ -25,5 +25,7 @@ public:
 
 	void VisitPokeStop(CPokeStop *pokeStop, CPokeOrbitApp *pokeOrbit, double x, double y) override;
 
+	void VisitPokemon(CPokemon * pokemon);
+
 };
 

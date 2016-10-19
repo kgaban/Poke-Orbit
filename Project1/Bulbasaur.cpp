@@ -33,3 +33,11 @@ CBulbasaur::CBulbasaur(CPokeOrbitApp* pokeOrbit) :
 {
 
 }
+
+/** Add to the pokemon tally
+* \param visitor The visiting pokemon catcher
+*/
+void CBulbasaur::AddPoke(CPokemonCatchVisitor * visitor)
+{
+	visitor->mBulbasaur++;
+}
