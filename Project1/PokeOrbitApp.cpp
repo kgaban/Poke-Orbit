@@ -202,7 +202,7 @@ void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics,  int width, int 
 	converter4 = to_wstring(Charmanders);
 	const wchar_t* numCharmanders = converter4.c_str();
 	
-	mPokemonX = CPokeOrbitApp::Width / 2 - 100;
+	mPokemonX = CPokeOrbitApp::Width / 2 - 150;
 	mPokemonY = -CPokeOrbitApp::Height / 2 + 20;
 
 	/// Set checks initially to false
@@ -222,7 +222,7 @@ void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics,  int width, int 
 
 				/// Print out number of Pikachus
 				SolidBrush white(Color(255, 255, 255));
-				graphics->DrawString(numPikachus, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, 
+				graphics->DrawString(numPikachus, -1, &font, PointF(CPokeOrbitApp::Width / 2 - 20, 
 					-CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset*mDrawOrder), &white);
 
 				//mPokemonOffset += mPikachu->GetHeight();
@@ -236,7 +236,7 @@ void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics,  int width, int 
 
 				/// Print out number of Blastoises
 				SolidBrush white(Color(255, 255, 255));
-				graphics->DrawString(numBlastoises, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, 
+				graphics->DrawString(numBlastoises, -1, &font, PointF(CPokeOrbitApp::Width / 2 - 20, 
 					-CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset*mDrawOrder), &white);
 
 				//mPokemonOffset += mBlastoise->GetHeight();
@@ -250,7 +250,7 @@ void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics,  int width, int 
 
 				/// Print out number of Bulbasaurs
 				SolidBrush white(Color(255, 255, 255));
-				graphics->DrawString(numBulbasaurs, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, 
+				graphics->DrawString(numBulbasaurs, -1, &font, PointF(CPokeOrbitApp::Width / 2 - 20, 
 					-CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset*mDrawOrder), &white);
 
 				//mPokemonOffset += mBulbasaur->GetHeight();
@@ -263,7 +263,7 @@ void CPokeOrbitApp::DrawInventory(Gdiplus::Graphics * graphics,  int width, int 
 
 				/// Print out number of Charmanders
 				SolidBrush white(Color(255, 255, 255));
-				graphics->DrawString(numCharmanders, -1, &font, PointF(CPokeOrbitApp::Width / 2 + 30, 
+				graphics->DrawString(numCharmanders, -1, &font, PointF(CPokeOrbitApp::Width / 2 - 20, 
 					-CPokeOrbitApp::Height / 2 + 50 + mPokemonOffset*mDrawOrder), &white);
 
 				//mPokemonOffset += mCharmander->GetHeight();
