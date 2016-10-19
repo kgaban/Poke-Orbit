@@ -16,7 +16,8 @@
 #include "PokeStopVisitor.h"
 #include "PokeStopClickVisitor.h"
 #include "Emitter.h"
-
+#include <random>
+#include <chrono>
 #include <cmath>
 #include <memory>
 
@@ -44,6 +45,15 @@ const static double Radius = 500;
 
 ///Time elapsed since last draw
 double timeSinceLastDraw=0;
+
+///Time since start
+double emitterTime=0;
+
+/// Time of next pokestop emission
+double timeOfNextPokeStopEmission;
+
+/// Time of next pokemon emission
+double timeOfNextPokemonEmission;
 
 // CChildView
 
@@ -114,6 +124,8 @@ void CChildView::OnPaint()
 		mLastTime = time.QuadPart;
 		mTimeFreq = double(freq.QuadPart);
 		emitter.EmitPokemon();
+		timeOfNextPokemonEmission = rand() % 12 + 3;
+		timeOfNextPokeStopEmission = rand() % 25 + 20;
 	}
 
 	/*
@@ -126,7 +138,19 @@ void CChildView::OnPaint()
 	mLastTime = time.QuadPart;
 	 
 	mPokeOrbitApp.Update(elapsed);
-	emitter.Update(elapsed);
+	//mersenne twister using time as a seed to decide what type of object to emit
+	mt19937_64 rand(chrono::system_clock::now().time_since_epoch().count());
+	emitterTime += elapsed;
+	if (emitterTime >= timeOfNextPokemonEmission)
+	{
+		timeOfNextPokemonEmission = emitterTime + rand() % 12 + 3;
+		emitter.EmitPokemon();
+	}
+	if (emitterTime >= timeOfNextPokeStopEmission)
+	{
+		timeOfNextPokeStopEmission = emitterTime + rand() % 25 + 20;
+		emitter.EmitPokeStop();
+	}
 	mPokeOrbitApp.OnDraw(&graphics, rect.Width(), rect.Height());
 
 	mPokeOrbitApp.DrawInventory(&graphics, rect.Width(), rect.Height(), mInventory.PokeBallCount(), mInventory.PikachuCount(),
@@ -135,11 +159,6 @@ void CChildView::OnPaint()
 	// Check for pokestops that need to be made clickable
 	CPokeStopVisitor pokeStopVisitor;
 	mPokeOrbitApp.Accept(&pokeStopVisitor, 0, 0);
-
-
-	// TODO: Add your message handler code here
-	
-	// Do not call CWnd::OnPaint() for painting messages
 }
 
 /**

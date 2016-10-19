@@ -16,6 +16,7 @@
 #include "Blastoise.h"
 #include "Bulbasaur.h"
 #include "Pikachu.h"
+#include "Inventory.h"
 #include <chrono>
 #include <random>
 #include <memory>
@@ -32,11 +33,6 @@ CEmitter::CEmitter(CPokeOrbitApp * pokeOrbit, Graphics * graphics)
 {
 	mPokeOrbitApp = pokeOrbit;
 	mGraphics = graphics;
-		mTime=0;
-		//mersenne twister using time as a seed to decide what type of object to emit
-		mt19937_64 rand(chrono::system_clock::now().time_since_epoch().count());
-		mTimeOfNextPokemonEmission=rand()%12+3;
-		mTimeOfNextPokeStopEmission = 15;
 }
 
 /// Destructor
@@ -60,6 +56,7 @@ void CEmitter::EmitPokemon()
 		{
 		case 0:
 			object = make_shared<CBulbasaur>(mPokeOrbitApp);
+			
 			break;
 		case 1:
 			object = make_shared<CPikachu>(mPokeOrbitApp);
@@ -83,23 +80,5 @@ void CEmitter::EmitPokeStop()
 	mPokeOrbitApp->Add(object);
 }
 
-/** Update the emmitter
-* \param elapsed The time since the last update
-*/
-void CEmitter::Update(double elapsed)
-{
-	mTime += elapsed;
-	mTime += 0;
-	if (mTime >= mTimeOfNextPokemonEmission)
-	{
-		EmitPokemon();
-		mTimeOfNextPokemonEmission += rand() % 12 + 3;
-	}
-	if (mTime >= mTimeOfNextPokeStopEmission)
-	{
-		EmitPokeStop();
-		mTimeOfNextPokeStopEmission += rand() % 25 + 20;
-	}
-}
 
 

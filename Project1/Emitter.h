@@ -28,12 +28,6 @@ public:
 	void Update(double);
 
 private:
-	///Time since start
-	double mTime;
-	/// Time of next pokestop emission
-	double mTimeOfNextPokeStopEmission;
-	/// Time of next pokemon emission
-	double mTimeOfNextPokemonEmission;
 	///pokeOrbitApp to emit in
 	CPokeOrbitApp * mPokeOrbitApp;
 	/// Graphics context to draw in
