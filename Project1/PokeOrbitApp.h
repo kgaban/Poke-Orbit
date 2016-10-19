@@ -88,6 +88,7 @@ private:
 	double mPokemonOffset; ///< used to draw Pokemon
 
 	int mDrawOrder;
+	double mHeightOffset;
 
 	bool mPikachuDrawn;
 	bool mBlastoiseDrawn;
