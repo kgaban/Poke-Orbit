@@ -101,4 +101,3 @@ private:
 	/// All of our active pokeballs
 	std::vector<std::shared_ptr<CPokeBall> > mPokeBalls;
 };
-

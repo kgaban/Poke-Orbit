@@ -36,7 +36,7 @@ CEmitter::CEmitter(CPokeOrbitApp * pokeOrbit)
 	mPokeStopTime = 0;
 	mt19937_64 rand(chrono::system_clock::now().time_since_epoch().count());
 	mTimeOfNextPokemonEmission= (double)(rand() % 12 + 3);
-	mTimeOfNextPokeStopEmission = (double)(rand() % 10 + 20);
+	mTimeOfNextPokeStopEmission = (double)(rand() % 5 + 60);
 }
 
 /// Destructor
@@ -97,7 +97,7 @@ void CEmitter::Update(double elapsed)
 	}
 	if (mPokeStopTime >= mTimeOfNextPokeStopEmission)
 	{
-		mTimeOfNextPokeStopEmission = (double)(rand() % 10 + 20);
+		mTimeOfNextPokeStopEmission = (double)(rand() % 5 + 60);
 		mPokeStopTime = 0;
 		EmitPokeStop();
 	}
