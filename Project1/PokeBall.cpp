@@ -19,7 +19,6 @@ using namespace std;
 
 /// Set the image for the pokeball
 const wstring filename = L"images/pokeball.png";
-
 /**
 * Constructor
 * \param pokeOrbit The poke orbit app to add the object to

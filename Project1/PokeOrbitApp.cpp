@@ -109,9 +109,9 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	graphics->DrawImage(mAsh, mAshX, mAshY,
 		mAsh->GetWidth(), mAsh->GetHeight());
 
-	vector < shared_ptr<CGameObject> > markedForDeath;
+	vector < shared_ptr<CPokeBall> > markedForDeath;
 	// Remove game objects that have left the circle
-	for (auto i = mObjects.rbegin(); i != mObjects.rend(); i++)
+	for (auto i = mPokeBalls.rbegin(); i != mPokeBalls.rend(); i++)
 	{
 		if ((*i)->GetDist() > radius)
 		{
@@ -120,7 +120,7 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	}
 	for (auto i : markedForDeath)
 	{
-		RemoveObject(i);
+		RemoveBall(i);
 	}
 
 
@@ -146,7 +146,7 @@ void CPokeOrbitApp::Update(double elapsed)
 	for (auto object : mObjects)
 	{
 		object->Update(elapsed);
-	}
+	}	
 	for (auto pokeBall : mPokeBalls)
 	{
 		pokeBall->Update(elapsed);
@@ -338,3 +338,7 @@ bool CPokeOrbitApp::CatchTest(CGameObject * pokemon)
 	// Return false if no pokeball caught the pokemon
 	return false;
 }
+
+
+
+
