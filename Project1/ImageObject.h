@@ -23,27 +23,45 @@ public:
 	CImageObject(const CImageObject&) = delete;
 	~CImageObject();
 
-	// Function to update position of a game object
+	// Function to update position of an image object
 	virtual void Update(double elapsed)=0;
 
-	// Function to draw a game object (can be overwritten)
+	// Function to draw an image object (can be overwritten)
 	virtual void Draw(Gdiplus::Graphics *graphics);
 
 	virtual void SetPosition(double x, double y);
 
 	virtual void SetImage(const std::wstring filename);
 
-	/// Return the object's x position
+	/**
+	* Getter for mX
+	* \return mX X coordinate of object
+	*/
 	virtual double GetX() { return mX; }
-	/// Return the object's y position
+	/**
+	* Getter for mY
+	* \return mY Y coordinate of object
+	*/
 	virtual double GetY() { return mY; }
-	/// Sets the objects y position
+	/**
+	* Setter for mY
+	* \param y double to set mY to
+	*/
 	virtual void SetY(double y) { mY = y; }
-	/// Sets the objects y position
+	/**
+	* Setter for mX
+	* \param x double to set mX to
+	*/
 	virtual void SetX(double x) { mX = x; }
-	/// Gets the image of the object
+	/**
+	* Getter for mObjectImage
+	* \return &mObjectImage pointer to mObjectImage
+	*/
 	virtual std::unique_ptr<Gdiplus::Bitmap>* GetImage() { return &mObjectImage; }
-	/// Gets the pokeOrbitApp of the image
+	/**
+	* Getter for mPokeOrbitApp
+	* \return mPokeOrbitApp pointer to app we are playing in
+	*/
 	CPokeOrbitApp* GetApp() { return mPokeOrbitApp; }
 
 	virtual double GetDist();
