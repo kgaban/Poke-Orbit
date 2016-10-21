@@ -110,6 +110,8 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 		mAsh->GetWidth(), mAsh->GetHeight());
 
 	vector < shared_ptr<CPokeBall> > markedForDeath;
+
+	vector < shared_ptr<CGameObject> > stopsMarkedForDeath;
 	// Remove game objects that have left the circle
 	for (auto i = mPokeBalls.rbegin(); i != mPokeBalls.rend(); i++)
 	{
@@ -123,6 +125,17 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 		RemoveBall(i);
 	}
 
+	for (auto i = mObjects.rbegin(); i != mObjects.rend(); i++)
+	{
+		if ((*i)->GetDist() > radius)
+		{
+			stopsMarkedForDeath.push_back(*i);
+		}
+	}
+	for (auto i : stopsMarkedForDeath)
+	{
+		RemoveObject(i);
+	}
 
 	// Draw our pokeballs first
 	for (auto pokeBall = mPokeBalls.rbegin(); pokeBall != mPokeBalls.rend(); pokeBall++)
