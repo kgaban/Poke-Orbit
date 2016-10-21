@@ -36,6 +36,11 @@ void CInventory::ThrowBall(CPokeOrbitApp * pokeOrbit, std::shared_ptr<CPokeBall>
 	}
 }
 
+
+/**
+ * Adds Pokeballs to the count
+ * \param numPokeBalls number of pokeballs
+ */
 void CInventory::AddPokeBalls(int numPokeBalls)
 {
 	mPokeBalls += numPokeBalls;

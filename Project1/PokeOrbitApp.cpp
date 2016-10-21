@@ -153,6 +153,8 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 
 /**
 * Update Game objects in the app
+*
+* \param elapsed time since last function call
 */
 void CPokeOrbitApp::Update(double elapsed)
 {
