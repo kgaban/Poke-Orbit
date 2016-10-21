@@ -27,7 +27,7 @@ using namespace Gdiplus;
 * \param pokeOrbit - the PokeOrbit game this object is a part of
 * \param filename = name of file containing image for the object
 */
-CGameObject::CGameObject(CPokeOrbitApp * pokeOrbit, wstring filename) : CImageObject(pokeOrbit, filename)
+CGameObject::CGameObject(CPokeOrbitApp * pokeOrbit, std::wstring filename) : CImageObject(pokeOrbit, filename)
 {}
 
 

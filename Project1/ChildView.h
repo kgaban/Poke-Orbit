@@ -10,8 +10,8 @@
 #include "Inventory.h"
 
 
-// CChildView window
 
+/// CChildView window
 class CChildView : public CWnd
 {
 // Construction
