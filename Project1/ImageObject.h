@@ -44,16 +44,6 @@ public:
 	*/
 	virtual double GetY() { return mY; }
 	/**
-	* Setter for mY
-	* \param y double to set mY to
-	*/
-	virtual void SetY(double y) { mY = y; }
-	/**
-	* Setter for mX
-	* \param x double to set mX to
-	*/
-	virtual void SetX(double x) { mX = x; }
-	/**
 	* Getter for mObjectImage
 	* \return &mObjectImage pointer to mObjectImage
 	*/

@@ -30,8 +30,7 @@ const double InitialPos = 0;
 */
 CPokeBall::CPokeBall(CPokeOrbitApp *pokeOrbit, double x, double y) : CImageObject(pokeOrbit, Filename)
 {
-	SetX(InitialPos);
-	SetY(InitialPos);
+	SetPosition(InitialPos,InitialPos);
 	mSpeedX = x;
 	mSpeedY = y;
 
