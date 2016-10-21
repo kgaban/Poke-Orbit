@@ -12,6 +12,7 @@
 #include "PokeOrbitApp.h"
 #include "Pokemon.h"
 
+/// Class to implement a charmander
 class CCharmander :
 	public CPokemon
 {
