@@ -24,7 +24,11 @@ public:
 	CGameObject(const CGameObject&) = delete;
 	~CGameObject();
 
-	// Function to update position of a game object
+	/**
+	* Function to update position of a game object
+	* \param elapsed time since last function call
+	*/
+
 	virtual void Update(double elapsed) override;
 
 	///Setter for mSpeed
@@ -32,8 +36,10 @@ public:
 
 	virtual bool HitTest(double x, double y);
 
+	/// Setter for position
 	void SetPosition(double x, double y) { CImageObject::SetPosition(x, y); }
 
+	/// Setter for image
 	void SetImage(const std::wstring filename) { CImageObject::SetImage(filename); }
 
 	/// Return the object's x position
