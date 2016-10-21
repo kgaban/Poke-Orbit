@@ -14,6 +14,10 @@
 class CPokeOrbitApp;
 class CPokeOrbitVisitor;
 
+
+/**
+ * Class to implement draqwing of objects in the pokeorbitapp
+ */
 class CImageObject
 {
 public:
@@ -23,7 +27,7 @@ public:
 	CImageObject(const CImageObject&) = delete;
 	~CImageObject();
 
-	// Function to update position of an image object
+	///Pure virtual Function to update position of an image object
 	virtual void Update(double elapsed)=0;
 
 	// Function to draw an image object (can be overwritten)

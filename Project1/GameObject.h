@@ -15,6 +15,10 @@
 class CPokeOrbitApp;
 class CPokeOrbitVisitor;
 
+
+/**
+ * Class to implement gameobjects(pokestops and pokemon)
+ */
 class CGameObject : CImageObject
 {
 public:

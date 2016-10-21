@@ -24,8 +24,6 @@ using namespace Gdiplus;
 
 /** Constructor
 * \param pokeOrbit - the PokeOrbit game this object is a part of
-* \param x either the x position or the x speed of the object
-* \param y either the y position or the y speed of the object
 * \param filename = name of file containing image for the object
 */
 CImageObject::CImageObject(CPokeOrbitApp * pokeOrbit, wstring filename)
