@@ -111,7 +111,7 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	// Remove game objects that have left the circle
 	for (auto i = mPokeBalls.rbegin(); i != mPokeBalls.rend(); i++)
 	{
-		if ((*i)->GetDist() > radius)
+		if ((*i)->GetDist() >= radius)
 		{
 			markedForDeath.push_back(*i);
 		}
