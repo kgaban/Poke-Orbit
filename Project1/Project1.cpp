@@ -1,4 +1,4 @@
-
+/// \cond
 // Project1.cpp : Defines the class behaviors for the application.
 //
 
@@ -176,3 +176,5 @@ void CProject1App::OnAppAbout()
 //
 //	CDialogEx::OnTimer(nIDEvent);
 //}
+
+/// \endcond

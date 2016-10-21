@@ -1,3 +1,4 @@
+/// \cond
 
 // Project1.h : main header file for the Project1 application
 //
@@ -37,3 +38,5 @@ private:
 };
 
 extern CProject1App theApp;
+
+/// \endcond

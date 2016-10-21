@@ -40,6 +40,11 @@ public:
 	void DrawInventory(Gdiplus::Graphics * graphics, int width, int height, int mNumPokeballs, int Pikachus, 
 		int Blastoises, int Bulbasaurs, int Charmanders);
 
+	/**
+	*
+	* \return bool checks if a catch was successful
+	*
+	*/
 	bool CatchTest(CGameObject *pokemon);
 
 
@@ -83,9 +88,8 @@ private:
 	Gdiplus::Bitmap *mBulbasaur; ///< Image of a Bulbasaur
 	Gdiplus::Bitmap *mCharmander; ///< Image of a Charmander
 
-	/// Coordinatees to draw the pokemon for the inventory
-	int mPokemonX;
-	int mPokemonY;
+	int mPokemonX;	///< X Coordinatees to draw the pokemon for the inventory
+	int mPokemonY;	///< Y Coordinatees to draw the pokemon for the inventory
 
 
 
