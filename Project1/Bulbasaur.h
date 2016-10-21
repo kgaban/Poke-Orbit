@@ -11,6 +11,8 @@
 #include "PokeOrbitApp.h"
 #include "Pokemon.h"
 
+
+/// class to implement a bulbasaur
 class CBulbasaur :
 	public CPokemon
 {

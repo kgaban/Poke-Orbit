@@ -57,10 +57,6 @@ public:
 	}
 
 private:
-	Gdiplus::Bitmap *mAsh; ///< Image of ash
-	int mAshX;  ///< X coordinate of Ash
-	int mAshY;  ///< Y coordinate of Ash
-
 	/// Playing area width in virtual pixels
 	const static int Width = 1400;
 
@@ -69,6 +65,13 @@ private:
 
 	/// Radius of the playing feild in virtual pixels
 	const static int Radius = 500;
+
+	/// Offset for displaying pokemon inventory
+	const double mPokemonOffset = 125;  ///< offset for 
+
+	Gdiplus::Bitmap *mAsh; ///< Image of ash
+	int mAshX;  ///< X coordinate of Ash
+	int mAshY;  ///< Y coordinate of Ash
 
 	/// Used to draw a pokeball
 	Gdiplus::Bitmap *mPokeBall; ///< Image of a pokeball
@@ -85,7 +88,6 @@ private:
 	int mPokemonY;
 
 
-	const double mPokemonOffset = 125;  ///< offset for 
 
 	int mDrawOrder;						///< draw order counter
 	double mHeightOffset;				///< offset for the counter height

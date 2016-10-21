@@ -12,6 +12,7 @@
 #include "GameObject.h"
 #include "PokemonCatchVisitor.h"
 
+/// class to implement pokemon
 class CPokemon :
 	public CGameObject
 {

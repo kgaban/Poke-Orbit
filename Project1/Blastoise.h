@@ -11,6 +11,7 @@
 #include "PokeOrbitApp.h"
 #include "Pokemon.h"
 
+/// class to implement a blastoise
 class CBlastoise :
 	public CPokemon
 {
