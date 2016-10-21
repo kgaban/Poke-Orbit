@@ -16,6 +16,7 @@ var searchData=
   ['mcharmanderdrawn',['mCharmanderDrawn',['../class_c_poke_orbit_app.html#a87433d2a99f99938fbda43ed34f45e90',1,'CPokeOrbitApp']]],
   ['mclicktime',['mClickTime',['../class_c_poke_stop.html#a9976f7dc954790bc1577265707d452b4',1,'CPokeStop']]],
   ['mdraworder',['mDrawOrder',['../class_c_poke_orbit_app.html#aa295d31e551a945758d0d46f2021cb40',1,'CPokeOrbitApp']]],
+  ['memitter',['mEmitter',['../class_c_child_view.html#abea0ea2856f1261b51e73b6ae2f155ec',1,'CChildView']]],
   ['mfirstdraw',['mFirstDraw',['../class_c_child_view.html#a02e7e39b1dc65025e429d6284c122b65',1,'CChildView']]],
   ['mheightoffset',['mHeightOffset',['../class_c_poke_orbit_app.html#a037d14a8a1c8e7c4a1343f24fbbd38c8',1,'CPokeOrbitApp']]],
   ['minventory',['mInventory',['../class_c_child_view.html#ac3ec3d066058715b952db94ea9f33454',1,'CChildView']]],

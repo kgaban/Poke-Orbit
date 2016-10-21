@@ -17,7 +17,9 @@ var dir_a02403b15ef5df26b3d4343d9e6dd2de =
       [ "CChildView", "class_c_child_view.html", "class_c_child_view" ]
     ] ],
     [ "DoubleBufferDC.h", "_double_buffer_d_c_8h.html", null ],
-    [ "Emitter.h", "_emitter_8h_source.html", null ],
+    [ "Emitter.h", "_emitter_8h.html", [
+      [ "CEmitter", "class_c_emitter.html", "class_c_emitter" ]
+    ] ],
     [ "GameObject.cpp", "_game_object_8cpp.html", null ],
     [ "GameObject.h", "_game_object_8h.html", [
       [ "CGameObject", "class_c_game_object.html", "class_c_game_object" ]

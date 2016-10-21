@@ -24,7 +24,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_blastoise_8cpp.html",
-"class_c_pokemon.html#a1b3b98f1a639f5f3759b8008bfc99d1f"
+"class_c_pokemon.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

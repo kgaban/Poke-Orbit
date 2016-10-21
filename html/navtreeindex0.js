@@ -28,6 +28,7 @@ var NAVTREEINDEX0 =
 "_child_view_8h_source.html":[1,0,0,7],
 "_double_buffer_d_c_8h.html":[1,0,0,8],
 "_double_buffer_d_c_8h_source.html":[1,0,0,8],
+"_emitter_8h.html":[1,0,0,9],
 "_emitter_8h_source.html":[1,0,0,9],
 "_game_object_8cpp.html":[1,0,0,10],
 "_game_object_8h.html":[1,0,0,11],
@@ -105,12 +106,12 @@ var NAVTREEINDEX0 =
 "class_c_child_view.html#af513a57c45ce8b9dcc09dd934e228534":[0,0,3,3],
 "class_c_child_view.html#aff5af7c162c10755edbe58f260ded6d4":[0,0,3,0],
 "class_c_emitter.html":[0,0,4],
+"class_c_emitter.html#a0da8c609b5ae1ff04ddefd1ef0bd56be":[0,0,4,4],
 "class_c_emitter.html#a2a2786afc77ec56f18b281810367dff3":[0,0,4,3],
 "class_c_emitter.html#a30b4f1e4d0e8960ea57126723abcebb3":[0,0,4,5],
 "class_c_emitter.html#a319d9105f27e25720581419fea213a06":[0,0,4,6],
 "class_c_emitter.html#a4ea7ee85d5af3e3d61e20592dffc9410":[0,0,4,8],
 "class_c_emitter.html#a50fbb18bf5de4637314e1fb42db96273":[0,0,4,0],
-"class_c_emitter.html#a5cf6293f113778f1da44e7805d8fa80d":[0,0,4,4],
 "class_c_emitter.html#a734d0782152357f145c84bbee51c1f55":[0,0,4,7],
 "class_c_emitter.html#a9204202e886bf6dfd8599fdd8317f828":[0,0,4,1],
 "class_c_emitter.html#aa4ead9d56a7505f4cae69248a785d5be":[0,0,4,9],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "class_c_poke_stop_visitor.html#a34e2afaf6fb2e30af5d27a2eb2976075":[0,0,16,2],
 "class_c_poke_stop_visitor.html#a9dd93b292a96466f64377608172bbb65":[0,0,16,1],
 "class_c_poke_stop_visitor.html#ae2b3f3f17a2954a2079ac2dcf764bebe":[0,0,16,3],
-"class_c_poke_stop_visitor.html#afe85fadfc166be2abd3ab6b9971361f7":[0,0,16,0],
-"class_c_pokemon.html":[0,0,10]
+"class_c_poke_stop_visitor.html#afe85fadfc166be2abd3ab6b9971361f7":[0,0,16,0]
 };

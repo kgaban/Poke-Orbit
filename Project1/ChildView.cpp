@@ -149,6 +149,8 @@ void CChildView::OnPaint()
 
 /**
 * Procedure on follow on releasing the left mouse button
+* \param nFlags Flags associated with our click
+* \param point The position of our click
 */
 void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 {
@@ -227,12 +229,11 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 	return FALSE;
 }
 
-//void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
-//{
-//	
-//}
 
-
+/** Perform actions when the left mouse button goes down
+* \param nFlags Flags associated with the click
+* \param point The position of the click
+*/
 void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	CRect rect;

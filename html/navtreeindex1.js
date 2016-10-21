@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"class_c_pokemon.html":[0,0,10],
 "class_c_pokemon.html#a1b3b98f1a639f5f3759b8008bfc99d1f":[0,0,10,5],
 "class_c_pokemon.html#a1f7411abd095835836aa013d49c05b76":[0,0,10,1],
 "class_c_pokemon.html#a4040180aa70cd6e231e4b5bd3b034574":[0,0,10,2],

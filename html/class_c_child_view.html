@@ -137,8 +137,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="separator:a4c6bb8bd631cee84bb80c948f3d6d98a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6060e6d09d522d345dcee5a01d41c1f0"><td class="memItemLeft" align="right" valign="top">afx_msg BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_child_view.html#a6060e6d09d522d345dcee5a01d41c1f0">OnEraseBkgnd</a> (CDC *pDC)</td></tr>
 <tr class="separator:a6060e6d09d522d345dcee5a01d41c1f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af513a57c45ce8b9dcc09dd934e228534"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af513a57c45ce8b9dcc09dd934e228534"></a>
-afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><b>OnLButtonDown</b> (UINT nFlags, CPoint point)</td></tr>
+<tr class="memitem:af513a57c45ce8b9dcc09dd934e228534"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_child_view.html#af513a57c45ce8b9dcc09dd934e228534">OnLButtonDown</a> (UINT nFlags, CPoint point)</td></tr>
 <tr class="separator:af513a57c45ce8b9dcc09dd934e228534"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -158,7 +157,8 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:ac3ec3d066058715b952db94ea9f33454"><td class="mdescLeft">&#160;</td><td class="mdescRight">Our inventory. <br /></td></tr>
 <tr class="separator:ac3ec3d066058715b952db94ea9f33454"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abea0ea2856f1261b51e73b6ae2f155ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abea0ea2856f1261b51e73b6ae2f155ec"></a>
-<a class="el" href="class_c_emitter.html">CEmitter</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mEmitter</b></td></tr>
+<a class="el" href="class_c_emitter.html">CEmitter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_child_view.html#abea0ea2856f1261b51e73b6ae2f155ec">mEmitter</a></td></tr>
+<tr class="memdesc:abea0ea2856f1261b51e73b6ae2f155ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">The emitter for our pokemon and pokestops. <br /></td></tr>
 <tr class="separator:abea0ea2856f1261b51e73b6ae2f155ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02e7e39b1dc65025e429d6284c122b65"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02e7e39b1dc65025e429d6284c122b65"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_child_view.html#a02e7e39b1dc65025e429d6284c122b65">mFirstDraw</a> = true</td></tr>
@@ -204,6 +204,39 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 
 </div>
 </div>
+<a class="anchor" id="af513a57c45ce8b9dcc09dd934e228534"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CChildView::OnLButtonDown </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>nFlags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CPoint&#160;</td>
+          <td class="paramname"><em>point</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Perform actions when the left mouse button goes down </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nFlags</td><td>Flags associated with the click </td></tr>
+    <tr><td class="paramname">point</td><td>The position of the click </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ae81948a77ebf3744bd0f9449af57ee21"></a>
 <div class="memitem">
 <div class="memproto">
@@ -227,7 +260,13 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Procedure on follow on releasing the left mouse button </p>
+<p>Procedure on follow on releasing the left mouse button </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nFlags</td><td>Flags associated with our click </td></tr>
+    <tr><td class="paramname">point</td><td>The position of our click </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -289,7 +328,7 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_c_child_view.html">CChildView</a></li>
-    <li class="footer">Generated on Fri Oct 21 2016 16:43:30 for CSE 335 Project by
+    <li class="footer">Generated on Fri Oct 21 2016 16:47:48 for CSE 335 Project by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>
