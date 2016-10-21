@@ -81,6 +81,7 @@ bool CGameObject::HitTest(double x, double y)
 
 /** Send the GameObject up to see if a pokeball caught it
 * (used by the PokemonCatchVisitor)
+* \return bool checks if CatchTest was successful
 */
 bool CGameObject::CatchTest()
 {
