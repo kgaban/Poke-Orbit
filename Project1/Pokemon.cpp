@@ -36,8 +36,8 @@ void CPokemon::Accept(CPokeOrbitVisitor * visitor, CPokeOrbitApp * pokeOrbit, do
 * \param min - minumum speed for this type of pokemon
 * \param max - maximum speed for this type of pokemon
 */
-CPokemon::CPokemon(CPokeOrbitApp* pokeOrbit, wstring file, double min, double max) :
-	CGameObject(pokeOrbit, file)
+CPokemon::CPokemon(CPokeOrbitApp* pokeOrbit, std::wstring filename, double min, double max) :
+	CGameObject(pokeOrbit, filename)
 {
 	double random = ((double)rand() / (RAND_MAX));
 	SetSpeed(random * (max - min) + min);
