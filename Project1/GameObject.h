@@ -8,46 +8,46 @@
 
 
 #pragma once
+#include "ImageObject.h"
 #include <string>
 #include <memory>
 
 class CPokeOrbitApp;
 class CPokeOrbitVisitor;
 
-class CGameObject
+class CGameObject : CImageObject
 {
 public:
 	///default constructor (disabled)
 	CGameObject()=delete;
 	///copy constructor (disabled)
-	//CGameObject(const CGameObject&) = delete;
+	CGameObject(const CGameObject&) = delete;
 	~CGameObject();
 
 	// Function to update position of a game object
-	virtual void Update(double elapsed);
-
-	// Function to draw a game object (can be overwritten)
-	virtual void Draw(Gdiplus::Graphics *graphics);
-
-	void SetPosition(double x, double y);
-
-	void SetImage(const std::wstring filename);
+	virtual void Update(double elapsed) override;
 
 	///Setter for mSpeed
 	void SetSpeed(double speed) { mSpeed = speed; }
-	/// Return the object's x position
-	double GetX() { return mX; }
-	/// Return the object's y position
-	double GetY() { return mY; }
-	/// Sets the objects y position
-	void SetY(double y) { mY = y; }
-	/// Sets the objects y position
-	void SetX(double x) { mX = x; }
-
-	virtual double GetDist();
 
 	virtual bool HitTest(double x, double y);
 
+	void SetPosition(double x, double y) { CImageObject::SetPosition(x, y); }
+
+	void SetImage(const std::wstring filename) { CImageObject::SetImage(filename); }
+
+	/// Return the object's x position
+	virtual double GetX() { return CImageObject::GetX(); }
+	/// Return the object's y position
+	virtual double GetY() { return CImageObject::GetY(); }
+	/// Sets the objects y position
+	virtual std::unique_ptr<Gdiplus::Bitmap>* GetImage() { return CImageObject::GetImage(); }
+	/// Gets the pokeOrbitApp of the image
+	CPokeOrbitApp* GetApp() { return CImageObject::GetApp(); }
+	///Inhereted draw function from ImageObject]
+	virtual void Draw(Gdiplus::Graphics *graphics) { CImageObject::Draw(graphics); }
+	///Draw function inhereted from imageobject
+	virtual double GetDist() { return CImageObject::GetDist(); }
 	bool CatchTest();
 
 	/** Accept visitor
@@ -62,18 +62,6 @@ protected:
 	CGameObject(CPokeOrbitApp *pokeOrbit, std::wstring filename);
 
 private:
-	/// The PokeOrbitApp containing the GameObject
-	CPokeOrbitApp *mPokeOrbitApp;
-
-	/// The image of the object
-	std::unique_ptr<Gdiplus::Bitmap> mObjectImage;
-
-	/// X position
-	double mX = 0;
-
-	/// Y position
-	double mY = 0;
-
 	///speed of the object
 	double mSpeed;
 

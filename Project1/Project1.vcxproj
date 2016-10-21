@@ -188,6 +188,7 @@
     <ClInclude Include="DoubleBufferDC.h" />
     <ClInclude Include="Emitter.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="ImageObject.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Pikachu.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="ChildView.cpp" />
     <ClCompile Include="Emitter.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="ImageObject.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Pikachu.cpp" />

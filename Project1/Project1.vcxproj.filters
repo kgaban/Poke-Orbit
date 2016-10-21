@@ -84,6 +84,9 @@
     <ClInclude Include="PokemonCatchVisitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ImageObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project1.cpp">
@@ -141,6 +144,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PokemonCatchVisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

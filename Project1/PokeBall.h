@@ -18,7 +18,7 @@
 
 
 /// Class to manage behavior of thrown pokeballs
-class CPokeBall : public CGameObject
+class CPokeBall : public CImageObject
 {
 public:
 
@@ -35,11 +35,6 @@ public:
 	void Update(double elapsed) override;
 
 private:
-	/// X position of the pokeball
-	double mX = 0;
-
-	/// Y position of the pokeball
-	double mY = 0;
 
 	/// Pokeball X speed
 	double mSpeedX = 0;

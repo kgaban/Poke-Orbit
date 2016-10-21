@@ -18,7 +18,9 @@ using namespace Gdiplus;
 using namespace std;
 
 /// Set the image for the pokeball
-const wstring filename = L"images/pokeball.png";
+const wstring Filename = L"images/pokeball.png";
+///Initial position of pokeball
+const double InitialPos = 0;
 /**
 * Constructor
 * \param pokeOrbit The poke orbit app to add the object to
@@ -26,8 +28,10 @@ const wstring filename = L"images/pokeball.png";
 * \param y The speed in the y direction of the pokeball
 * \param filename The name of the file
 */
-CPokeBall::CPokeBall(CPokeOrbitApp *pokeOrbit, double x, double y) : CGameObject(pokeOrbit, filename)
+CPokeBall::CPokeBall(CPokeOrbitApp *pokeOrbit, double x, double y) : CImageObject(pokeOrbit, Filename)
 {
+	SetX(InitialPos);
+	SetY(InitialPos);
 	mSpeedX = x;
 	mSpeedY = y;
 
@@ -45,10 +49,7 @@ CPokeBall::~CPokeBall()
 */
 void CPokeBall::Update(double elapsed)
 {
-	mX += mSpeedX * elapsed;
-	mY += mSpeedY * elapsed;
-
-	SetPosition(mX, mY);
+	SetPosition(GetX() + mSpeedX * elapsed, GetY() + mSpeedY * elapsed);
 }
 
 

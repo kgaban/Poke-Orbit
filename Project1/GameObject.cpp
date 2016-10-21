@@ -11,6 +11,7 @@
 #include "stdafx.h"
 #include "PokeOrbitApp.h"
 #include "GameObject.h"
+#include "ImageObject.h"
 #include <chrono>
 #include <random>
 #include <string>
@@ -28,73 +29,13 @@ using namespace Gdiplus;
 * \param y either the y position or the y speed of the object
 * \param filename = name of file containing image for the object
 */
-CGameObject::CGameObject(CPokeOrbitApp * pokeOrbit, wstring filename)
-{
-	mPokeOrbitApp = pokeOrbit;
-	SetImage(filename);
-	//mersenne twister using time as a seed to emit to a random location
-	mt19937_64 rand(chrono::system_clock::now().time_since_epoch().count());
-	mX = (double)(rand()%300 + 50);
-	mY = (double)(rand()%((int)sqrt(250000-mX*mX)-200) + 20);
-}
+CGameObject::CGameObject(CPokeOrbitApp * pokeOrbit, wstring filename) : CImageObject(pokeOrbit, filename)
+{}
 
 
 
 CGameObject::~CGameObject()
 {
-}
-
-
-/** Draw a given GameObject
-* \param graphics The graphics we are drawing to
-*/
-void CGameObject::Draw(Gdiplus::Graphics * graphics)
-{
-	if (mObjectImage != nullptr)
-	{
-		double xOffset = (mObjectImage->GetWidth()) / 2;
-		double yOffset = (mObjectImage->GetHeight()) / 2;
-		double xPos = mX - xOffset;
-		double yPos = mY - xOffset;
-		graphics->DrawImage(mObjectImage.get(), (int)xPos, (int)yPos);
-	}
-}
-
-
-/** Sets the position of the game object
-* \param x The x position
-* \param y The y position
-*/
-void CGameObject::SetPosition(double x, double y)
-{
-	mX = x;
-	mY = y;
-}
-
-
-/** Sets the image of the game object
-* \param filename The file name of the image
-*/
-void CGameObject::SetImage(const wstring filename)
-{
-	mObjectImage = unique_ptr<Bitmap>(Bitmap::FromFile(filename.c_str()));
-	if (mObjectImage->GetLastStatus() != Ok)
-	{
-		wstring msg(L"Failed to open ");
-		msg += filename;
-		AfxMessageBox(msg.c_str());
-	}
-}
-
-
-
-/** Return the absolute distance from the center of the circle
-* \return c The distance from the center
-*/
-double CGameObject::GetDist()
-{
-	double c = sqrt(pow(mX, 2) + pow(mY, 2) );
-	return c;
 }
 
 
@@ -105,8 +46,8 @@ double CGameObject::GetDist()
 */
 bool CGameObject::HitTest(double x, double y)
 {
-	double wid = mObjectImage->GetWidth();
-	double hit = mObjectImage->GetHeight();
+	double wid = (*GetImage())->GetWidth();
+	double hit = (*GetImage())->GetHeight();
 
 	// Make x and y relative to the top-left corner of the bitmap image
 	// Subtracting the center makes x, y relative to the image center
@@ -122,7 +63,7 @@ bool CGameObject::HitTest(double x, double y)
 	}
 
 	// Test to see if x, y are in the drawn part of the image
-	auto format = mObjectImage->GetPixelFormat();
+	auto format = (*GetImage())->GetPixelFormat();
 	if (format == PixelFormat32bppARGB || format == PixelFormat32bppPARGB)
 	{
 		// This image has an alpha map, which implements the 
@@ -130,7 +71,7 @@ bool CGameObject::HitTest(double x, double y)
 		// clicked on a pixel where alpha is not zero, meaning
 		// the pixel shows on the screen.
 		Color color;
-		mObjectImage->GetPixel((int)testX, (int)testY, &color);
+		(*GetImage())->GetPixel((int)testX, (int)testY, &color);
 		return color.GetAlpha() != 0;
 	}
 	else {
@@ -143,7 +84,7 @@ bool CGameObject::HitTest(double x, double y)
 */
 bool CGameObject::CatchTest()
 {
-	return mPokeOrbitApp->CatchTest(this);
+	return GetApp()->CatchTest(this);
 }
 
 void CGameObject::Update(double elapsed)
