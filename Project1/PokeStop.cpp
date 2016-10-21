@@ -53,18 +53,6 @@ void CPokeStop::Update(double elapsed)
 	CGameObject::Update(elapsed);
 }
 
-
-
-/**
-* Method to draw the pokeball on the game board
-* \param graphics The drawing board
-*/
-void CPokeStop::Draw(Gdiplus::Graphics * graphics)
-{
-	CGameObject::Draw(graphics);
-}
-
-
 /// Update the clickable status of the pokestop
 void CPokeStop::MakeClickable()
 {

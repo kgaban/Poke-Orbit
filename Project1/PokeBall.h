@@ -26,13 +26,11 @@ public:
 	CPokeBall() = delete;
 
 	/// Copy constructor, disabled
-	//CPokeBall(const CPokeBall&) = delete;
+	CPokeBall(const CPokeBall&) = delete;
 
 	CPokeBall(CPokeOrbitApp *pokeOrbit, double x, double y);
 
 	virtual ~CPokeBall();
-
-	void Draw(Gdiplus::Graphics * graphics) override;
 
 	void Update(double elapsed) override;
 

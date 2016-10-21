@@ -34,7 +34,7 @@ CGameObject::CGameObject(CPokeOrbitApp * pokeOrbit, wstring filename)
 	SetImage(filename);
 	//mersenne twister using time as a seed to emit to a random location
 	mt19937_64 rand(chrono::system_clock::now().time_since_epoch().count());
-	mX = (double)(rand()%300 + 20);
+	mX = (double)(rand()%300 + 50);
 	mY = (double)(rand()%((int)sqrt(250000-mX*mX)-200) + 20);
 }
 

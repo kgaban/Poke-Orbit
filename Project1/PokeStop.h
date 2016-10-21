@@ -27,8 +27,6 @@ public:
 
 	void Update(double elapsed) override;
 
-	void Draw(Gdiplus::Graphics * graphics);
-	
 	void MakeClickable();
 
 	/** Return availability of pokestop for clicking
