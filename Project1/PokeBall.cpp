@@ -38,16 +38,6 @@ CPokeBall::~CPokeBall()
 {
 }
 
-/**
-* Method to draw the pokeball on the game board
-* \param graphics The drawing board
-* \param width The width of the board
-* \param height The height of the board
-*/
-void CPokeBall::Draw(Gdiplus::Graphics * graphics)
-{
-	CGameObject::Draw(graphics);
-}
 
 /**
 * Updates the current position of the pokeball

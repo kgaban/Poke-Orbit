@@ -23,9 +23,10 @@ public:
 	//CGameObject(const CGameObject&) = delete;
 	~CGameObject();
 
-	/// Function to update position of a game object
+	// Function to update position of a game object
 	virtual void Update(double elapsed);
 
+	// Function to draw a game object (can be overwritten)
 	virtual void Draw(Gdiplus::Graphics *graphics);
 
 	void SetPosition(double x, double y);
@@ -38,6 +39,10 @@ public:
 	double GetX() { return mX; }
 	/// Return the object's y position
 	double GetY() { return mY; }
+	/// Sets the objects y position
+	void SetY(double y) { mY = y; }
+	/// Sets the objects y position
+	void SetX(double x) { mX = x; }
 
 	virtual double GetDist();
 

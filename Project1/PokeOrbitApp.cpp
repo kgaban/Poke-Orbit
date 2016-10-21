@@ -120,7 +120,7 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	}
 
 
-	// Draw our pokemon and pokestops second, and in the order of most recent on top
+	// Draw our pokemon and pokestops in the order of most recent on top
 	for (auto object = mObjects.begin(); object != mObjects.end(); object++)
 	{
 		(*object)->Draw(graphics);
