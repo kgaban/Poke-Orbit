@@ -105,10 +105,6 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	mAshX = 0 - (mAsh->GetWidth()) / 2;
 	mAshY = 0 - (mAsh->GetHeight()) / 2;
 
-	/// Sets the location of Ash
-	graphics->DrawImage(mAsh, mAshX, mAshY,
-		mAsh->GetWidth(), mAsh->GetHeight());
-
 	vector < shared_ptr<CPokeBall> > markedForDeath;
 	// Remove game objects that have left the circle
 	for (auto i = mPokeBalls.rbegin(); i != mPokeBalls.rend(); i++)
@@ -124,17 +120,21 @@ void CPokeOrbitApp::OnDraw(Gdiplus::Graphics * graphics, int width, int height)
 	}
 
 
-	// Draw our pokeballs first
+	// Draw our pokemon and pokestops second, and in the order of most recent on top
+	for (auto object = mObjects.begin(); object != mObjects.end(); object++)
+	{
+		(*object)->Draw(graphics);
+	}
+
+	// Draw our pokeballs on top of other objects
 	for (auto pokeBall = mPokeBalls.rbegin(); pokeBall != mPokeBalls.rend(); pokeBall++)
 	{
 		(*pokeBall)->Draw(graphics);
 	}
 
-	// Draw our pokemon and pokestops second, and in the order of most recent on top
-	for (auto object = mObjects.rbegin(); object != mObjects.rend(); object++)
-	{
-		(*object)->Draw(graphics);
-	}
+	//draw ash on top
+	graphics->DrawImage(mAsh, mAshX, mAshY,
+		mAsh->GetWidth(), mAsh->GetHeight());
 }
 
 
