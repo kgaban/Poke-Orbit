@@ -69,11 +69,12 @@ public:
 	virtual void Accept(CPokeOrbitVisitor *visitor, CPokeOrbitApp *pokeOrbit, double x, double y) {}
 
 protected:
+	///Constructor - uses CImage object to construct
 	CGameObject(CPokeOrbitApp *pokeOrbit, std::wstring filename);
 
 private:
 	///speed of the object
-	double mSpeed;
+	double mSpeed=0;
 
 };
 

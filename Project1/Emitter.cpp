@@ -26,8 +26,6 @@ using namespace Gdiplus;
 
 /** Constructor
 * \param pokeOrbit The pokeorbit app this pokestop belongs to
-* \param x The x position of the pokestop
-* \param y The y position of the pokestop
 */
 CEmitter::CEmitter(CPokeOrbitApp * pokeOrbit)
 {

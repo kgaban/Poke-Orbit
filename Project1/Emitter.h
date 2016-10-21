@@ -1,9 +1,9 @@
 /**
-* \file PokeStop.h
+* \file Emitter.h
 *
-* \author Marc VandenBerg
+* \author Connor Masini
 *
-* Class to implement pokestops in our game
+* Class to implement Emitters in our game
 */
 
 
@@ -25,7 +25,12 @@ public:
 	virtual ~CEmitter();
 	void EmitPokemon();
 	void EmitPokeStop();
-	void Update(double);
+
+	/**
+	* Updates emitter
+	* \param elapsed - time since last update
+	*/
+	void Update(double elapsed);
 
 private:
 	///pokeOrbitApp to emit in
