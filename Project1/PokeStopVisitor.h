@@ -15,6 +15,9 @@
 class CPokeStop;
 class CPokeOrbitApp;
 
+/**
+* A class for visiting PokeStops
+*/
 class CPokeStopVisitor :
 	public CPokeOrbitVisitor
 {
