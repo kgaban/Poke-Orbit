@@ -26,7 +26,6 @@ const double InitialPos = 0;
 * \param pokeOrbit The poke orbit app to add the object to
 * \param x The speed in the x direction of the pokeball
 * \param y The speed in the y direction of the pokeball
-* \param filename The name of the file
 */
 CPokeBall::CPokeBall(CPokeOrbitApp *pokeOrbit, double x, double y) : CImageObject(pokeOrbit, Filename)
 {
